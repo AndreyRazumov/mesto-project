@@ -15,6 +15,8 @@ ____
 
 :heavy_check_mark: Медиазапросы
 
+:heavy_check_mark: ПоПаПы
+
 :heavy_check_mark: Версия языка: :ru:
 
 :heavy_check_mark:  HTML и CSS
