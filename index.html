@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" sizes="16x16" href="./images/Profile-avatar.jpg">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>«Mesto»</title>
+</head>
+<body class="page">
+  <div class="root">
+    <!------------Блок header------------>
+    <header class="header">
+      <img class="header__logo" src="./images/Header-logo.svg" alt="логотип Mesto россия">
+    </header>
+    <main class="main">
+    <!------------Блок profile------------>
+      <section class="profile">
+        <img class="profile__avatar" src="./images/Profile-avatar.jpg" alt="Аватарка">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="button profile__button-edit" aria-label="редактировать"></button>
+          <p class="profile__desc">Исследователь океана</p>
+        </div>
+        <button class="profile__button-link button"></button>
+      </section>
+    <!------------Блок elements------------>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="element">
+            <img class="element__image" src="./images/Element-karachaevsk.jpg" alt="развалены древнего храма на фоне гор">
+            <div class="element__cell">
+              <h2 class="element__caption">Карачаевск</h2>
+              <button class="element__button-lick" aria-label="Лайкнуть"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/Element-elbrus.jpg" alt="пейзаж горы Эльбрус в далеке">
+            <div class="element__cell">
+              <h2 class="element__caption">Гора Эльбрус</h2>
+              <button class="element__button-lick" aria-label="Лайкнуть"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/Element-dombay.jpg" alt="пейзаж заснеженной горы Домбай">
+            <div class="element__cell">
+              <h2 class="element__caption">Домбай</h2>
+              <button class="element__button-lick" aria-label="Лайкнуть"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/Element-elbrus.jpg" alt="пейзаж горы Эльбрус в далеке">
+            <div class="element__cell">
+              <h2 class="element__caption">Гора Эльбрус</h2>
+              <button class="element__button-lick" aria-label="Лайкнуть"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/Element-dombay.jpg" alt="пейзаж заснеженной горы Домбай">
+            <div class="element__cell">
+              <h2 class="element__caption">Домбай</h2>
+              <button class="element__button-lick" aria-label="Лайкнуть"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="./images/Element-karachaevsk.jpg" alt="развалены древнего храма на фоне гор">
+            <div class="element__cell">
+              <h2 class="element__caption">Карачаево-Черкесия</h2>
+              <button class="element__button-lick" aria-label="Лайкнуть"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <!------------Блок footer------------>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Андрей Разумов</p>
+    </footer>
+  </div>
+<!------------Блок popap------------>
+ <section class="popap popup_opened">
+  <div class="popup__container">
+    <form class="popap__block">
+        <h2 class="popap__title">Редактировать профиль</h2>
+      <fieldset class="popap__items">
+        <input type="text" id="name" class="popap__item" name="name" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="1" maxlength="39" required>
+        <input type="text" id="discription" class="popap__item" name="discription" value="Исследователь океана" placeholder="О себе" minlength="1" maxlength="39" required>
+      </fieldset>
+      <button class="popap__button-save" type="submit">Сохранить</button>
+      <button class="popap__button-close button" type="button" aria-label="закрыть"></button>
+    </form>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.popap__item {
+  min-height: 36px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popap__item:hover, .popap__item:focus {
+  opacity: .6;
+}

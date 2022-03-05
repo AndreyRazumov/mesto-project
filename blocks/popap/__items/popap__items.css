@@ -1,0 +1,9 @@
+.popap__items {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  row-gap: 21px;
+  max-width: 358px;
+  width: 100%;
+  border: none;
+}

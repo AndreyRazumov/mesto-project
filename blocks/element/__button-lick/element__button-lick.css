@@ -1,0 +1,21 @@
+.element__button-lick {
+  min-width: 22px;
+  min-height: 19px;
+  background-image: url(../../../images/like.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.element__button-lick:hover, .element__button-lick:focus {
+  outline: none;
+  opacity: .5;
+}
+
+.element__button-lick:active {
+  background-image: url(../../../images/like_active.svg);
+  opacity: 1;
+}

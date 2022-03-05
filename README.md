@@ -1,17 +1,20 @@
-# Проект: Место
+## :steam_locomotive: [***Проект: Место***](https://andreyrazumov.github.io/mesto-project/ "Проект: Место") :steam_locomotive:
+____
 
-### Обзор
+### Описание проекта
 
-* Figma
-* Картинки
+***Адаптивная верстка лендинга в разных разрешениях***
+____
+#### В этом проекте применены технологии:
 
-**Figma**
+:heavy_check_mark: Макет из [Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4)
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+:heavy_check_mark: Grid Layout
 
-**Картинки**
+:heavy_check_mark: Flexbox
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+:heavy_check_mark: Медиазапросы
 
-Удачи!
+:heavy_check_mark: Версия языка: :ru:
+
+:heavy_check_mark:  HTML и CSS
