@@ -1,4 +1,4 @@
-.popap__item {
+.popup__item {
   min-height: 36px;
   box-sizing: border-box;
   padding: 0;
@@ -12,6 +12,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
-.popap__item:hover, .popap__item:focus {
+.popup__item:hover, .popup__item:focus {
   opacity: .6;
 }

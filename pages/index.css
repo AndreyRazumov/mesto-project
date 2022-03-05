@@ -30,14 +30,14 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-/* ------------- Блок popap ------------- */
-@import url(../blocks/popap/popap.css);
-@import url(../blocks/popap/__block/popap__block.css);
-@import url(../blocks/popap/__container/popup__container.css);
-@import url(../blocks/popap/_opened/popup_opened.css);
-@import url(../blocks/popap/__items/popap__items.css);
-@import url(../blocks/popap/__button-close/popap__button-close.css);
-@import url(../blocks/popap/__button-save/popap__button-save.css);
-@import url(../blocks/popap/__item/popap__item.css);
-@import url(../blocks/popap/__title/popap__title.css);
+/* ------------- Блок popup ------------- */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__block/popup__block.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__items/popup__items.css);
+@import url(../blocks/popup/__button-close/popup__button-close.css);
+@import url(../blocks/popup/__button-save/popup__button-save.css);
+@import url(../blocks/popup/__item/popup__item.css);
+@import url(../blocks/popup/__title/popup__title.css);
 
