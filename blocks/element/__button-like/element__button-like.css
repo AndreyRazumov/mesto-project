@@ -1,4 +1,4 @@
-.element__button-lick {
+.element__button-like {
   min-width: 22px;
   min-height: 19px;
   background-image: url(../../../images/like.svg);
@@ -10,12 +10,12 @@
   opacity: 1;
 }
 
-.element__button-lick:hover, .element__button-lick:focus {
+.element__button-like:hover, .element__button-like:focus {
   outline: none;
   opacity: .5;
 }
 
-.element__button-lick:active {
+.element__button-like:active {
   background-image: url(../../../images/like_active.svg);
   opacity: 1;
 }
