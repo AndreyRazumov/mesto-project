@@ -2,7 +2,7 @@
   margin: 48px 0 0;
   padding: 0;
   border: none;
-  min-width: 358px;
+  max-width: 358px;
   min-height: 50px;
   background-color: #000;
   color: #fff;
@@ -13,14 +13,15 @@
   text-align: center;
   border-radius: 2px;
   cursor: pointer;
+  transition: opacity .3s linear;
 }
 
 @media screen and (max-width: 417px) {
   .popup__button-save {
-    max-height: 47px;
+    min-height: 46px;
     font-size: 14px;
     line-height: 17px;
-    margin-top: 44px;
+    margin-top: 45px;
   }
 }
 

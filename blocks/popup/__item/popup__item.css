@@ -10,6 +10,7 @@
   outline: none;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  transition: opacity .3s linear;
 }
 
 .popup__item:hover, .popup__item:focus {

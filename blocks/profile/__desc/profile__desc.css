@@ -4,6 +4,7 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
+  max-width: 293px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -14,5 +15,6 @@
     font-size: 14px;
     line-height: 17px;
     margin: 0;
+    max-width: 189px;
   }
 }
