@@ -34,9 +34,7 @@ const initialCards = [
   }
 ];
 
-
 function cardSelection () {
-
   function getRandomElement (arr) {
     let randIndex = Math.floor(Math.random() * arr.length);
     return arr[randIndex];
@@ -102,8 +100,6 @@ function cardsDelete () {
 
 profile.addEventListener('submit', function formSubmitHandler (evt) {
   evt.preventDefault();
-  // const popupName = document.querySelector('#popupName');
-  // const popupDescription = document.querySelector('#popupDescription');
   const profileName = document.querySelector('.profile__name');
   const profileDesc = document.querySelector('.profile__desc');
 
