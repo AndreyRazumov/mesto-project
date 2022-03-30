@@ -1,4 +1,12 @@
 'use strict';
+const cardsTemplate = document.querySelector('#template').content;
+const elementsList = document.querySelector('.elements__list');
+const elementImage = cardsTemplate.querySelector('.element__image');
+const elementCaption = cardsTemplate.querySelector('.element__caption');
+
+
+// Выбор карточек
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -26,31 +34,29 @@ const initialCards = [
   }
 ];
 
-// const profileButtonEdit = document.querySelector('.profile__button-edit');
-// const profileButtonLink = document.querySelector('.profile__button-link');
 
-// const profile = document.querySelector('#profile');
-// const cards = document.querySelector('#cards');
+function cardSelection () {
 
-// const profileButtonClose = document.querySelector('#profile_button-close');
-// const cardsButtonClose = document.querySelector('#cards_button-close');
+  function getRandomElement (arr) {
+    let randIndex = Math.floor(Math.random() * arr.length);
+    return arr[randIndex];
+  };
 
-// const profileButtonSave = document.querySelector('#profile_button-save');
-// const cardsButtonSave = document.querySelector('#cards_button-save');
+  let randomElement = getRandomElement(initialCards);
+  elementImage.src = randomElement.link;
+  elementCaption.textContent = randomElement.name;
+  const cardsElementCopy = cardsTemplate.querySelector('.element').cloneNode(true);
+  elementsList.prepend(cardsElementCopy);
 
-// const popup = document.querySelector('.popup');
-// const popupButtonClose = document.querySelector('.popup__button-close')
-// const popupButtonSave = document.querySelector('.popup__button-save')
-// const elementButtonLike = document.querySelector('.element__button-like')
-
-// Выбор карточек
-/*
-
- for (i=0 i<=6 i++) {
-  cardsSubmitHandler(evt)
+  like();
+  cardsDelete ();
 }
 
-*/
+
+for (let i=0; i<=5; i++) {
+  cardSelection (i);
+}
+
 
 // Открытие и закрытие popup:
 
@@ -73,7 +79,24 @@ function cardsClose () {
 document.querySelector('#cards_button-close').addEventListener('click', cardsClose);
 
 
+// Лайкнуть
 
+function like() {
+  document.querySelector('.element__button-like').addEventListener('click', function (evt){
+    evt.target.classList.toggle('element__button-like_active');
+  });
+}
+
+
+// Удалить элемент
+
+function cardsDelete () {
+  const elementButtonTrash = document.querySelector('.element__button-trash');
+  elementButtonTrash.addEventListener('click', function () {
+    const elementTrash = elementButtonTrash.closest('.element');
+    elementTrash.remove();
+  });
+}
 
 // Редактирование профиля:
 
@@ -90,18 +113,10 @@ profile.addEventListener('submit', function formSubmitHandler (evt) {
 });
 
 
-
-
 // Добавить карточки
 
-cards.addEventListener('submit', function cardsSubmitHandler (evt) {
+function cardsSubmitHandler (evt) {
   evt.preventDefault();
-  const cardsTemplate = document.querySelector('#template').content;
-  const elementsList = document.querySelector('.elements__list');
-  // const popupNameCards = document.querySelector('#nameCards');
-  // const popupImageCards = document.querySelector('#imageCards');
-  const elementImage = cardsTemplate.querySelector('.element__image');
-  const elementCaption = cardsTemplate.querySelector('.element__caption');
 
   elementImage.alt = elementCaption.textContent = nameCards.value;
   elementImage.src = imageCards.value;
@@ -110,31 +125,15 @@ cards.addEventListener('submit', function cardsSubmitHandler (evt) {
   elementsList.prepend(cardsElementCopy);
 
   cardsClose()
-
-  // Лайкнуть
-
-  document.querySelector('.element__button-like').addEventListener('click', function (evt){
-    evt.target.classList.toggle('element__button-like_active');
-  });
-
-  // Удалить элемент
-
-  const elementButtonTrash = document.querySelector('.element__button-trash');
-  elementButtonTrash.addEventListener('click', function () {
-    const elementDell = elementButtonTrash.closest('.element');
-    elementDell.remove();
-  });
-
-  // Обнулить строки
+  like()
+  cardsDelete ()
 
   nameCards.value = ''
   imageCards.value = ''
-});
-
+};
+cards.addEventListener('submit', cardsSubmitHandler);
 
 // Увеличить элемент
-
-
 
 
 
