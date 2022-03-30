@@ -1,5 +1,30 @@
 'use strict';
-
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 // const profileButtonEdit = document.querySelector('.profile__button-edit');
 // const profileButtonLink = document.querySelector('.profile__button-link');
@@ -18,9 +43,16 @@
 // const popupButtonSave = document.querySelector('.popup__button-save')
 // const elementButtonLike = document.querySelector('.element__button-like')
 
+// Выбор карточек
+/*
 
+ for (i=0 i<=6 i++) {
+  cardsSubmitHandler(evt)
+}
 
-// Включение и выключение popup:
+*/
+
+// Открытие и закрытие popup:
 
 document.querySelector('.profile__button-edit').addEventListener('click', function () {
   profile.classList.add('popup_opened');
@@ -34,17 +66,14 @@ document.querySelector('#profile_button-close').addEventListener('click', profil
 document.querySelector('.profile__button-link').addEventListener('click', function () {
   cards.classList.add('popup_opened');
 });
+
 function cardsClose () {
   cards.classList.remove('popup_opened');
 }
 document.querySelector('#cards_button-close').addEventListener('click', cardsClose);
 
 
-// Лайкнуть
 
-document.querySelector('.element__button-like').addEventListener('click', function (evt){
-  evt.target.classList.toggle('element__button-like_active');
-});
 
 // Редактирование профиля:
 
@@ -59,6 +88,8 @@ profile.addEventListener('submit', function formSubmitHandler (evt) {
   profileDesc.textContent = popupDescription.value;
   profileClose()
 });
+
+
 
 
 // Добавить карточки
@@ -76,39 +107,31 @@ cards.addEventListener('submit', function cardsSubmitHandler (evt) {
   elementImage.src = imageCards.value;
 
   const cardsElementCopy = cardsTemplate.querySelector('.element').cloneNode(true);
-
   elementsList.prepend(cardsElementCopy);
+
   cardsClose()
+
+  // Лайкнуть
+
   document.querySelector('.element__button-like').addEventListener('click', function (evt){
     evt.target.classList.toggle('element__button-like_active');
   });
+
+  // Удалить элемент
+
+  const elementButtonTrash = document.querySelector('.element__button-trash');
+  elementButtonTrash.addEventListener('click', function () {
+    const elementDell = elementButtonTrash.closest('.element');
+    elementDell.remove();
+  });
+
+  // Обнулить строки
 
   nameCards.value = ''
   imageCards.value = ''
 });
 
 
-// Удалить элемент
-/*
-
-<li class="todo__item">
-  <span>Полить цветы</span>
-  <button class="todo__item-button">Удалить</button>
-<li>
-
-//поможет метод closest. Он возвращает ближайший родительский элемент с переданным селектором.
-//Когда мы вызываем его на элементе кнопки удаления, то получаем искомый элемент списка, просто передав его класс:
-
-// выберем кнопку удаления
-const deleteButton = document.querySelector('.todo__item-button');
-
-// добавим обработчик
-deleteButton.addEventListener('click', function () {
-  const listItem = deleteButton.closest('.todo__item');
-  listItem.remove();
-});
-
-*/
 // Увеличить элемент
 
 
