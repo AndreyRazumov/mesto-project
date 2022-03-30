@@ -26,6 +26,7 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__button-like/element__button-like.css);
 @import url(../blocks/element/__button-like/_active/element__button-like_active.css);
+@import url(../blocks/element/__button-trash/element__button-trash.css);
 
 /* ------------- Блок footer ------------- */
 @import url(../blocks/footer/footer.css);
