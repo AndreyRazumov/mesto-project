@@ -37,25 +37,24 @@ const initialCards = [
 ];
 
 function getRandomElement (arr) {
-    let randIndex = Math.floor(Math.random() * arr.length);
->>>>>>> d84f2ce4ad94f63a5e9549263aa84f945a2162c8
-    return arr[randIndex];
-  };
+  const randIndex = Math.floor(Math.random() * arr.length);
+  return arr[randIndex];
+};
 
 function cardSelection () {
 
-  let randomElement = getRandomElement(initialCards);
-  elementImage.src = randomElement.link;
-  elementImage.alt = elementCaption.textContent = randomElement.name;
+let randomElement = getRandomElement(initialCards);
+elementImage.src = randomElement.link;
+elementImage.alt = elementCaption.textContent = randomElement.name;
 
-  elementImage.setAttribute('style', 'cursor:pointer');
-  const cardsElementCopy = element.cloneNode(true);
+elementImage.setAttribute('style', 'cursor:pointer');
+const cardsElementCopy = element.cloneNode(true);
 
-  elementsList.prepend(cardsElementCopy);
+elementsList.prepend(cardsElementCopy);
 
-  like();
-  cardsDelete ();
-  fullScreen ()
+like();
+cardsDelete ();
+fullScreen ()
 }
 
 for (let i=0; i<=5; i++) {
@@ -154,11 +153,4 @@ function cardsSubmitHandler (evt) {
 
 };
 cards.addEventListener('submit', cardsSubmitHandler);
-
-
-
-
-
-
-
 
