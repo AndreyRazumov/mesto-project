@@ -36,11 +36,6 @@ const initialCards = [
   }
 ];
 
-<<<<<<< HEAD
-function cardSelection () {
-  function getRandomElement (arr) {
-    const randIndex = Math.floor(Math.random() * arr.length);
-=======
 function getRandomElement (arr) {
     let randIndex = Math.floor(Math.random() * arr.length);
 >>>>>>> d84f2ce4ad94f63a5e9549263aa84f945a2162c8
