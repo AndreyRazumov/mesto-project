@@ -19,4 +19,4 @@ ____
 
 :heavy_check_mark: Версия языка: :ru:
 
-:heavy_check_mark:  HTML, CSS и
+:heavy_check_mark:  HTML, CSS и JavaScript
