@@ -28,54 +28,7 @@
     <!------------Блок elements------------>
       <section class="elements">
         <ul class="elements__list">
-          <!-- <li class="element">
-            <img class="element__image" src="./images/element-karachaevsk.jpg" alt="развалены древнего храма на фоне гор">
-            <div class="element__cell">
-              <h2 class="element__caption">Карачаевск</h2>
-              <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
-            </div>
-            <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/element-elbrus.jpg" alt="пейзаж горы Эльбрус в далеке">
-            <div class="element__cell">
-              <h2 class="element__caption">Гора Эльбрус</h2>
-              <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
-            </div>
-            <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/element-dombay.jpg" alt="пейзаж заснеженной горы Домбай">
-            <div class="element__cell">
-              <h2 class="element__caption">Домбай</h2>
-              <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
-            </div>
-            <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/element-elbrus.jpg" alt="пейзаж горы Эльбрус в далеке">
-            <div class="element__cell">
-              <h2 class="element__caption">Гора Эльбрус</h2>
-              <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
-            </div>
-            <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/element-dombay.jpg" alt="пейзаж заснеженной горы Домбай">
-            <div class="element__cell">
-              <h2 class="element__caption">Домбай</h2>
-              <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
-            </div>
-            <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/element-karachaevsk.jpg" alt="развалены древнего храма на фоне гор">
-            <div class="element__cell">
-              <h2 class="element__caption">Карачаево-Черкесия</h2>
-              <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
-            </div>
-            <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
-          </li> -->
+          
         </ul>
       </section>
     </main>
@@ -87,11 +40,11 @@
 <!------------Блок popup лля профиля------------>
  <div class="popup" id="profile">
   <div class="popup__container">
-    <form class="popup__block" name="Profile-edit">
+    <form class="popup__block" name="profile-edit">
         <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__items">
-        <input type="text" id="popupName" class="popup__item" name="name" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="1" maxlength="39" required>
-        <input type="text" id="popupDescription" class="popup__item" name="description" value="Исследователь океана" placeholder="О себе" minlength="1" maxlength="39" required>
+        <input type="text" id="popupProfileName" class="popup__item" name="popupProfileName" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="1" maxlength="39" required>
+        <input type="text" id="popupProfileDescription" class="popup__item" name="popupProfileDescription" value="Исследователь океана" placeholder="О себе" minlength="1" maxlength="39" required>
       </fieldset>
       <button class="popup__button-save" id="profile_button-save"  type="submit" aria-label="Сохранить">Сохранить</button>
     </form>
@@ -101,21 +54,31 @@
 <!------------Блок popup лля карточки------------>
  <div class="popup" id="cards">
   <div class="popup__container">
-    <form class="popup__block" name="Cards-add">
+    <form class="popup__block" name="cards-add">
         <h2 class="popup__title">Новое место</h2>
       <fieldset class="popup__items">
-        <input type="text" id="nameCards" class="popup__item" name="nameCards" value="" placeholder="Название" minlength="1" maxlength="39" required>
-        <input type="url" id="imageCards" class="popup__item" name="imageCards" value="" placeholder="Ссылка на картинку" required>
+        <input type="text" id="popupCardsName" class="popup__item" name="popupCardsName" value="" placeholder="Название" minlength="1" maxlength="39" required>
+        <input type="url" id="popupCardsImage" class="popup__item" name="popupCardsImage" value="" placeholder="Ссылка на картинку" required>
       </fieldset>
       <button class="popup__button-save" id="cards_button-save"  type="submit" aria-label="Сохранить">Создать</button>
     </form>
     <button class="popup__button-close button" id="cards_button-close" type="button" aria-label="закрыть"></button>
   </div>
 </div>
+<!------------Блок popup лля картинок------------>
+<div class="popup" id="images">
+  <div class="popup__full-screen">
+    <figure class="popup__figure">
+      <img class="popup__image" src="#" alt="">
+      <figcaption class="popup__figcaption"></figcaption>
+    </figure>
+    <button class="popup__button-close button" id="images_button-close" type="button" aria-label="закрыть"></button>
+  </div>
+</div>
 <!------------Блок template------------>
 <template id="template">
   <li class="element">
-    <img class="element__image" src="" alt="">
+    <img class="element__image" src="#" alt="">
     <div class="element__cell">
       <h2 class="element__caption"></h2>
       <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>

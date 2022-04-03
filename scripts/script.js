@@ -1,11 +1,13 @@
 'use strict';
+
 const cardsTemplate = document.querySelector('#template').content;
 const elementsList = document.querySelector('.elements__list');
 const elementImage = cardsTemplate.querySelector('.element__image');
 const elementCaption = cardsTemplate.querySelector('.element__caption');
+const popupImage = document.querySelector('.popup__image');
+const element = cardsTemplate.querySelector('.element');
 
-
-// Выбор карточек
+// Загрузка карточек
 
 const initialCards = [
   {
@@ -34,22 +36,26 @@ const initialCards = [
   }
 ];
 
-function cardSelection () {
-  function getRandomElement (arr) {
+function getRandomElement (arr) {
     let randIndex = Math.floor(Math.random() * arr.length);
     return arr[randIndex];
   };
 
+function cardSelection () {
+
   let randomElement = getRandomElement(initialCards);
   elementImage.src = randomElement.link;
-  elementCaption.textContent = randomElement.name;
-  const cardsElementCopy = cardsTemplate.querySelector('.element').cloneNode(true);
+  elementImage.alt = elementCaption.textContent = randomElement.name;
+
+  elementImage.setAttribute('style', 'cursor:pointer');
+  const cardsElementCopy = element.cloneNode(true);
+
   elementsList.prepend(cardsElementCopy);
 
   like();
   cardsDelete ();
+  fullScreen ()
 }
-
 
 for (let i=0; i<=5; i++) {
   cardSelection (i);
@@ -59,22 +65,28 @@ for (let i=0; i<=5; i++) {
 // Открытие и закрытие popup:
 
 document.querySelector('.profile__button-edit').addEventListener('click', function () {
-  profile.classList.add('popup_opened');
+  profile.classList.add('popup_opened')
 });
 
-function profileClose () {
-  profile.classList.remove('popup_opened');
-}
 document.querySelector('#profile_button-close').addEventListener('click', profileClose);
+function profileClose () {
+  profile.classList.remove('popup_opened')
+};
+
 
 document.querySelector('.profile__button-link').addEventListener('click', function () {
-  cards.classList.add('popup_opened');
+  cards.classList.add('popup_opened')
 });
 
-function cardsClose () {
-  cards.classList.remove('popup_opened');
-}
 document.querySelector('#cards_button-close').addEventListener('click', cardsClose);
+function cardsClose () {
+  cards.classList.remove('popup_opened')
+};
+
+
+document.querySelector('#images_button-close').addEventListener('click',function () {
+  images.classList.remove('popup_opened')
+});
 
 
 // Лайкнуть
@@ -82,8 +94,8 @@ document.querySelector('#cards_button-close').addEventListener('click', cardsClo
 function like() {
   document.querySelector('.element__button-like').addEventListener('click', function (evt){
     evt.target.classList.toggle('element__button-like_active');
-  });
-}
+  })
+};
 
 
 // Удалить элемент
@@ -96,15 +108,26 @@ function cardsDelete () {
   });
 }
 
+
+// Увеличить картинку
+
+function fullScreen () {
+  document.querySelector('.element__image').addEventListener ('click', function (evt) {
+  popupImage.src = evt.target.src
+  document.querySelector('.popup__figcaption').textContent = evt.target.alt
+
+  images.classList.add('popup_opened');
+  })
+};
+
+
 // Редактирование профиля:
 
 profile.addEventListener('submit', function formSubmitHandler (evt) {
   evt.preventDefault();
-  const profileName = document.querySelector('.profile__name');
-  const profileDesc = document.querySelector('.profile__desc');
+  document.querySelector('.profile__name').textContent = popupProfileName.value;
+  document.querySelector('.profile__desc').textContent = popupProfileDescription.value;
 
-  profileName.textContent = popupName.value;
-  profileDesc.textContent = popupDescription.value;
   profileClose()
 });
 
@@ -114,44 +137,22 @@ profile.addEventListener('submit', function formSubmitHandler (evt) {
 function cardsSubmitHandler (evt) {
   evt.preventDefault();
 
-  elementImage.alt = elementCaption.textContent = nameCards.value;
-  elementImage.src = imageCards.value;
+  elementImage.alt = elementCaption.textContent = popupCardsName.value;
+  elementImage.src = popupImage.src = popupCardsImage.value;
 
-  const cardsElementCopy = cardsTemplate.querySelector('.element').cloneNode(true);
+  const cardsElementCopy = element.cloneNode(true);
   elementsList.prepend(cardsElementCopy);
+
+  popupCardsName.value = ''
+  popupCardsImage.value = ''
 
   cardsClose()
   like()
   cardsDelete ()
+  fullScreen ()
 
-  nameCards.value = ''
-  imageCards.value = ''
 };
 cards.addEventListener('submit', cardsSubmitHandler);
-
-// Увеличить элемент
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
