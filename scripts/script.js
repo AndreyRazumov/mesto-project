@@ -62,7 +62,7 @@ initialCards.forEach(function (elementCards) {
 
 // Функция создания карточки
 
-function creatingСard (createCard) {
+function creatingСard () {
   const cardsElementCopy = cardsTemplate.cloneNode(true);
   cardsContainer.prepend(cardsElementCopy);
 
