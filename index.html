@@ -28,7 +28,7 @@
     <!------------Блок elements------------>
       <section class="elements">
         <ul class="elements__list">
-          
+
         </ul>
       </section>
     </main>
@@ -38,9 +38,9 @@
     </footer>
   </div>
 <!------------Блок popup лля профиля------------>
- <div class="popup" id="profile">
+ <div class="popup" id="profilePopup">
   <div class="popup__container">
-    <form class="popup__block" name="profile-edit">
+    <form class="popup__block" id="profileForm" name="profile-edit">
         <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__items">
         <input type="text" id="popupProfileName" class="popup__item" name="popupProfileName" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="1" maxlength="39" required>
@@ -52,9 +52,9 @@
   </div>
 </div>
 <!------------Блок popup лля карточки------------>
- <div class="popup" id="cards">
+ <div class="popup" id="cardPopup">
   <div class="popup__container">
-    <form class="popup__block" name="cards-add">
+    <form class="popup__block" id="cardForm" name="cards-add">
         <h2 class="popup__title">Новое место</h2>
       <fieldset class="popup__items">
         <input type="text" id="popupCardsName" class="popup__item" name="popupCardsName" value="" placeholder="Название" minlength="1" maxlength="39" required>
@@ -66,7 +66,7 @@
   </div>
 </div>
 <!------------Блок popup лля картинок------------>
-<div class="popup" id="images">
+<div class="popup popup_background" id="imagePopup">
   <div class="popup__full-screen">
     <figure class="popup__figure">
       <img class="popup__image" src="#" alt="">
