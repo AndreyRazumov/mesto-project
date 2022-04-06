@@ -55,7 +55,7 @@ const initialCards = [
 
 initialCards.forEach(function (initialCards) {
   const cardsElement = createСard (initialCards.name, initialCards.link)
-  renderCard(cardsElement, cardsContainer);
+  renderCard(cardsElement);
 
 });
 
@@ -91,7 +91,7 @@ function createСard (name, link) {
   return cardsElementCopy;
 };
 
-function renderCard (cardsElement, cardsContainer) {
+function renderCard (cardsElement) {
   cardsContainer.prepend(cardsElement);
 }
 
@@ -100,7 +100,7 @@ function renderCard (cardsElement, cardsContainer) {
 cardForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
   const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
-  renderCard (cardsElement, cardsContainer);
+  renderCard (cardsElement);
   closePopup(cardPopup);
   popupCardsName.value = '';
   popupCardsImage.value = '';
