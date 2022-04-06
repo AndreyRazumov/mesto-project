@@ -88,7 +88,7 @@ function createСard (name, link) {
   openPopup (imagePopup);
   });
 
-  return (cardsElementCopy)
+  return cardsElementCopy;
 };
 
 function renderCard (cardsElement, cardsContainer) {
