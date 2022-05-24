@@ -104,7 +104,9 @@ cardForm.addEventListener('submit', function (evt) {
 //Добавление лайков
 
 cardsContainer.addEventListener ('click', function (evt){
-  evt.target.classList.toggle('element__button-like_active');
+  if (evt.target.classList.contains('element__button-like')){
+    evt.target.classList.toggle('element__button-like_active');
+  }
 });
 
 // Открытие и закрытие popup:
