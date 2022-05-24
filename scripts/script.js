@@ -7,16 +7,13 @@ const popupImage = document.querySelector('.popup__image');
 const profilePopup = document.querySelector('#profilePopup');
 const cardPopup = document.querySelector('#cardPopup');
 const imagePopup = document.querySelector('#imagePopup');
+const popups = document.querySelectorAll('.popup');
 
 const profileName = document.querySelector('.profile__name');
 const profileDesc = document.querySelector('.profile__desc');
 
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const profileButtonLink = document.querySelector('.profile__button-link');
-
-const profileButtonClose = document.querySelector('#profile_button-close');
-const cardsButtonClose = document.querySelector('#cards_button-close');
-const imagesButtonClose = document.querySelector('#images_button-close');
 
 const profileForm = document.querySelector('#profileForm');
 const cardForm = document.querySelector('#cardForm');
@@ -53,7 +50,7 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(function (initialCards) {
+initialCards.forEach((initialCards) => {
   const cardsElement = createСard (initialCards.name, initialCards.link)
   renderCard(cardsElement);
 
@@ -71,12 +68,12 @@ function createСard (name, link) {
 
   // Удалить элемент
   const elementButtonTrash = cardsElementCopy.querySelector('.element__button-trash');
-  elementButtonTrash.addEventListener('click', function () {
+  elementButtonTrash.addEventListener('click', () => {
     elementButtonTrash.closest('.element').remove();
   });
 
   // Увеличить картинку
-  cardsElementCopy.querySelector('.element__image').addEventListener ('click', function (evt) {
+  cardsElementCopy.querySelector('.element__image').addEventListener ('click', (evt) => {
   popupImage.src = evt.target.src;
   popupFigcaption.textContent = popupImage.alt = evt.target.alt;
   openPopup (imagePopup);
@@ -89,9 +86,19 @@ function renderCard (cardsElement) {
   cardsContainer.prepend(cardsElement);
 }
 
+
+//Добавление лайков
+
+cardsContainer.addEventListener ('click', (evt) => {
+  if (evt.target.classList.contains('element__button-like')){
+    evt.target.classList.toggle('element__button-like_active');
+  }
+});
+
+
 // Добавить карточки
 
-cardForm.addEventListener('submit', function (evt) {
+cardForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
   renderCard (cardsElement);
@@ -101,45 +108,43 @@ cardForm.addEventListener('submit', function (evt) {
 });
 
 
-//Добавление лайков
-
-cardsContainer.addEventListener ('click', function (evt){
-  if (evt.target.classList.contains('element__button-like')){
-    evt.target.classList.toggle('element__button-like_active');
-  }
-});
-
 // Открытие и закрытие popup:
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
 };
+
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
 };
 
-profileButtonEdit.addEventListener('click', function () {
+profileButtonEdit.addEventListener('click', () => {
   popupProfileName.value = profileName.textContent;
   popupProfileDescription.value = profileDesc.textContent;
   openPopup(profilePopup);
 });
-profileButtonLink.addEventListener('click', function () {
+
+profileButtonLink.addEventListener('click', () => {
   openPopup(cardPopup);
 });
-profileButtonClose.addEventListener('click', function () {
-  closePopup(profilePopup);
-});
-cardsButtonClose.addEventListener('click', function () {
-  closePopup(cardPopup);
-});
-imagesButtonClose.addEventListener('click', function () {
-  closePopup(imagePopup);
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup__button-close') || evt.target.classList.contains('popup')) {
+      closePopup(popup)
+    }
+  });
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    }
+  })
 });
 
 
 // Редактирование профиля:
 
-profileForm.addEventListener('submit', function (evt) {
+profileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   profileName.textContent = popupProfileName.value;
   profileDesc.textContent = popupProfileDescription.value;
