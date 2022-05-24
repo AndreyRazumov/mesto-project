@@ -69,12 +69,6 @@ function createСard (name, link) {
   elementImage.alt = elementCaption.textContent = name;
   elementImage.src = link;
 
-  // Лайкнуть
-  const elementButtonLike = cardsElementCopy.querySelector('.element__button-like');
-  elementButtonLike.addEventListener ('click', function (evt){
-    evt.target.classList.toggle('element__button-like_active');
-  });
-
   // Удалить элемент
   const elementButtonTrash = cardsElementCopy.querySelector('.element__button-trash');
   elementButtonTrash.addEventListener('click', function () {
@@ -106,6 +100,12 @@ cardForm.addEventListener('submit', function (evt) {
   popupCardsImage.value = '';
 });
 
+
+//Добавление лайков
+
+cardsContainer.addEventListener ('click', function (evt){
+  evt.target.classList.toggle('element__button-like_active');
+});
 
 // Открытие и закрытие popup:
 
@@ -145,5 +145,36 @@ profileForm.addEventListener('submit', function (evt) {
 });
 
 
+// enableValidation({
+//   formSelector: '.popup__form',
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__button',
+//   inactiveButtonClass: 'popup__button_disabled',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__error_visible'
+// });
 
 
+// запрос к серверу: https://mesto.nomoreparties.co
+
+// return fetch('https://nomoreparties.co/v1/cohort-11/cards', {
+//   headers: {
+//     authorization: '21113fb3-0279-459b-96d2-cacb8e8c5e15'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+
+
+//Загрузка информации о пользователе с сервера:
+// GET https://nomoreparties.co/v1/cohort-11/users/me
+
+
+//Загрузка карточек с сервера:
+// GET https://nomoreparties.co/v1/cohort-11/cards
+
+
+// Редактирование профиля
+// PATCH https://nomoreparties.co/v1/cohort-11/users/me
