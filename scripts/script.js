@@ -18,7 +18,10 @@ const profileButtonLink = document.querySelector('.profile__button-link');
 const profileForm = document.querySelector('#profileForm');
 const cardForm = document.querySelector('#cardForm');
 
-const popupFigcaption = document.querySelector('.popup__figcaption')
+const popupFigcaption = document.querySelector('.popup__figcaption');
+
+const formCardsAdd = document.forms.cardsAdd;
+
 
 
 // Загрузка карточек
@@ -103,8 +106,7 @@ cardForm.addEventListener('submit', (evt) => {
   const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
   renderCard (cardsElement);
   closePopup(cardPopup);
-  popupCardsName.value = '';
-  popupCardsImage.value = '';
+  formCardsAdd.reset()
 });
 
 
@@ -150,6 +152,25 @@ profileForm.addEventListener('submit', (evt) => {
   profileDesc.textContent = popupProfileDescription.value;
   closePopup(profilePopup);
 });
+
+
+// проверка на количество символов
+// form.addEventListener('input', function (evt) {
+//   const isValid = artist.value.length > 0 && title.value.length > 0;
+//   setSubmitButtonState(isValid);
+// });
+
+// включение кнопки при валидности
+// function setSubmitButtonState(isFormValid) {
+//   if (isFormValid) {
+//     addButton.removeAttribute('disabled');
+//     addButton.classList.remove('input__btn_disabled');
+//   } else {
+//     addButton.setAttribute('disabled', true);
+//     addButton.classList.add('input__btn_disabled');
+//   }
+// }
+
 
 
 // enableValidation({
