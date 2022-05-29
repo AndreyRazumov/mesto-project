@@ -8,10 +8,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: transparent;
-  border: none;
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity .3s linear;
 }
 
 .element__button-trash:hover, .element__button-trash:focus {

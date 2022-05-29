@@ -1,16 +1,8 @@
 .button {
   color: #fff;
+  border: none;
   opacity: 1;
   cursor: pointer;
   transition: opacity .3s linear;
-}
-
-.button:hover {
-  opacity: .6;
-}
-
-.button:focus {
-  outline: none;
-  opacity: .6;
 }
 

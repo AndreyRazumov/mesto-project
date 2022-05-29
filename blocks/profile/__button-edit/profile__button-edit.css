@@ -19,3 +19,7 @@
     margin-bottom: 7px;
   }
 }
+
+.profile__button-edit:hover, .profile__button-edit:focus{
+  opacity: .6;
+}

@@ -1,19 +1,15 @@
 .popup__button-save {
-  margin: 48px 0 0;
+  margin: 34px 0 0;
   padding: 0;
-  border: none;
   max-width: 358px;
   min-height: 50px;
   background-color: #000;
-  color: #fff;
   font-family: inherit;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
   border-radius: 2px;
-  cursor: pointer;
-  transition: opacity .3s linear;
 }
 
 @media screen and (max-width: 417px) {
@@ -26,6 +22,6 @@
 }
 
 .popup__button-save:hover, .popup__button-save:focus{
-  opacity: 0.8;
+  opacity: .8;
 }
 

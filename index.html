@@ -40,13 +40,19 @@
 <!------------Блок popup лля профиля------------>
  <div class="popup" id="profilePopup">
   <div class="popup__container">
-    <form class="popup__block" id="profileForm" name="profileEdit">
+    <form class="popup__block" id="profileForm" name="profileEdit" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__items">
-        <input type="text" id="popupProfileName" class="popup__item" name="popupProfileName" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="1" maxlength="39" required>
-        <input type="text" id="popupProfileDescription" class="popup__item" name="popupProfileDescription" value="Исследователь океана" placeholder="О себе" minlength="1" maxlength="39" required>
+        <label class="popup__field">
+          <input type="text" id="popupProfileName" class="popup__item" name="popupProfileName" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="2" maxlength="40" required>
+          <span class="popup__input-error popupProfileName-error">Заполните это поле.</span>
+        </label>
+        <label class="popup__field">
+          <input type="text" id="popupProfileDescription" class="popup__item" name="popupProfileDescription" value="Исследователь океана" placeholder="О себе" minlength="2" maxlength="200" required>
+          <span class="popup__input-error popupProfileDescription-error">Заполните это поле.</span>
+        </label>
       </fieldset>
-      <button class="popup__button-save" id="profile_button-save"  type="submit" aria-label="Сохранить">Сохранить</button>
+      <button class="popup__button-save button" id="profile_button-save"  type="submit" aria-label="Сохранить">Сохранить</button>
     </form>
     <button class="popup__button-close button" id="profile_button-close" type="button" aria-label="закрыть"></button>
   </div>
@@ -54,13 +60,19 @@
 <!------------Блок popup лля карточки------------>
  <div class="popup" id="cardPopup">
   <div class="popup__container">
-    <form class="popup__block" id="cardForm" name="cardsAdd">
+    <form class="popup__block" id="cardForm" name="cardsAdd" novalidate>
         <h2 class="popup__title">Новое место</h2>
       <fieldset class="popup__items">
-        <input type="text" id="popupCardsName" class="popup__item" name="popupCardsName" value="" placeholder="Название" minlength="1" maxlength="39" required>
-        <input type="url" id="popupCardsImage" class="popup__item" name="popupCardsImage" value="" placeholder="Ссылка на картинку" required>
+        <label class="popup__field">
+          <input type="text" id="popupCardsName" class="popup__item" name="popupCardsName" value="" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error popupCardsName-error">Заполните это поле.</span>
+        </label>
+        <label class="popup__field">
+          <input type="url" id="popupCardsImage" class="popup__item" name="popupCardsImage" value="" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error popupCardsImage-error">Заполните это поле.</span>
+        </label>
       </fieldset>
-      <button class="popup__button-save" id="cards_button-save"  type="submit" aria-label="Сохранить">Создать</button>
+      <button class="popup__button-save button" id="cards_button-save"  type="submit" aria-label="Сохранить">Создать</button>
     </form>
     <button class="popup__button-close button" id="cards_button-close" type="button" aria-label="закрыть"></button>
   </div>
@@ -81,7 +93,7 @@
     <img class="element__image" src="#" alt="">
     <div class="element__cell">
       <h2 class="element__caption"></h2>
-      <button class="element__button-like" type="button" aria-label="Лайкнуть"></button>
+      <button class="element__button-like button" type="button" aria-label="Лайкнуть"></button>
     </div>
     <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
   </li>

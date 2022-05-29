@@ -21,3 +21,7 @@
     background-size: 16px;
   }
 }
+
+.profile__button-link:hover, .profile__button-link:focus{
+  opacity: .6;
+}
