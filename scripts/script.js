@@ -120,8 +120,20 @@ cardForm.addEventListener('submit', (evt) => {
 });
 
 
-// Открытие и закрытие popup:
+// функция закрытия по Esc
+function closeByEsc (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+    formCardsAdd.reset()
+    formAvatarAdd.reset()
+  }
+};
 
+
+// Открытие и закрытие popup:
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
@@ -157,17 +169,6 @@ popups.forEach((popup) => {
 });
 
 
-// функция закрытия по Esc
-function closeByEsc (evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-    formCardsAdd.reset()
-    formAvatarAdd.reset()
-  }
-};
 
 // Редактирование аватарки:
 avatarForm.addEventListener('submit', (evt) => {
@@ -178,9 +179,7 @@ avatarForm.addEventListener('submit', (evt) => {
 });
 
 
-
 // Редактирование профиля:
-
 profileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   profileName.textContent = popupProfileName.value;
@@ -190,7 +189,6 @@ profileForm.addEventListener('submit', (evt) => {
 
 
 // Валидация
-
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add('popup__item_type_error');
