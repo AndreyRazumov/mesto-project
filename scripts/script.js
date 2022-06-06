@@ -6,11 +6,13 @@ const popupImage = document.querySelector('.popup__image');
 
 const profilePopup = document.querySelector('#profilePopup');
 const cardPopup = document.querySelector('#cardPopup');
+const avatarPopup = document.querySelector('#avatarPopup');
 const imagePopup = document.querySelector('#imagePopup');
 const popupCardsName = document.querySelector('#popupCardsName');
 const popupCardsImage = document.querySelector('#popupCardsImage');
 const popupProfileName = document.querySelector('#popupProfileName');
 const popupProfileDescription = document.querySelector('#popupProfileDescription');
+const popupAvatarImage = document.querySelector('#popupAvatarImage')
 
 const popups = document.querySelectorAll('.popup');
 
@@ -19,13 +21,16 @@ const profileDesc = document.querySelector('.profile__desc');
 
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const profileButtonLink = document.querySelector('.profile__button-link');
+const profileAvatarImage = document.querySelector('.profile__avatar-image')
 
 const profileForm = document.querySelector('#profileForm');
 const cardForm = document.querySelector('#cardForm');
+const avatarForm = document.querySelector('#avatarForm');
 
 const popupFigcaption = document.querySelector('.popup__figcaption');
 
 const formCardsAdd = document.forms.cardsAdd;
+const formAvatarAdd =document.forms.avatarAdd;
 
 
 
@@ -119,10 +124,12 @@ cardForm.addEventListener('submit', (evt) => {
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 };
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 };
 
 profileButtonEdit.addEventListener('click', () => {
@@ -135,20 +142,41 @@ profileButtonLink.addEventListener('click', () => {
   openPopup(cardPopup);
 });
 
+profileAvatarImage.addEventListener('click', () => {
+  openPopup(avatarPopup);
+});
+
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup__button-close') || evt.target.classList.contains('popup')) {
       closePopup(popup)
       formCardsAdd.reset()
+      formAvatarAdd.reset()
     }
   });
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup)
-      formCardsAdd.reset()
-    }
-  })
 });
+
+
+// функция закрытия по Esc
+function closeByEsc (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+    formCardsAdd.reset()
+    formAvatarAdd.reset()
+  }
+};
+
+// Редактирование аватарки:
+avatarForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  profileAvatarImage.src = popupAvatarImage.value;
+  closePopup(avatarPopup);
+  formAvatarAdd.reset()
+});
+
 
 
 // Редактирование профиля:
