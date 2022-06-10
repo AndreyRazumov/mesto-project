@@ -1,4 +1,7 @@
-'use strict';
+// 'use strict';
+
+
+import { enableValidation } from './validate.js';
 
 const cardsTemplate = document.querySelector('#template').content;
 const cardsContainer = document.querySelector('.elements__list');
@@ -189,123 +192,11 @@ profileForm.addEventListener('submit', (evt) => {
 
 
 // Валидация
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__item_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
-};
-
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__item_type_error');
-  errorElement.classList.remove('popup__input-error_active');
-  errorElement.textContent = '';
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
-  const buttonElement = formElement.querySelector('.popup__button-save');
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__block'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-      setEventListeners(formElement);
-  });
-};
-
-enableValidation();
-
-function hasInvalidInput (inputList) {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-}
-
-function toggleButtonState (inputList, buttonElement) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', '');
-    buttonElement.classList.add('button_inactive');
-  } else {
-    buttonElement.removeAttribute('disabled');
-    buttonElement.classList.remove('button_inactive');
-  }
-}
-
-
-
-
-
-
-
-// проверка на количество символов
-// form.addEventListener('input', function (evt) {
-//   const isValid = artist.value.length > 0 && title.value.length > 0;
-//   setSubmitButtonState(isValid);
-// });
-
-// включение кнопки при валидности
-// function setSubmitButtonState(isFormValid) {
-//   if (isFormValid) {
-//     addButton.removeAttribute('disabled');
-//     addButton.classList.remove('input__btn_disabled');
-//   } else {
-//     addButton.setAttribute('disabled', true);
-//     addButton.classList.add('input__btn_disabled');
-//   }
-// }
-
-
-
-// enableValidation({
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__button',
-//   inactiveButtonClass: 'popup__button_disabled',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'popup__error_visible'
-// });
-
-
-// запрос к серверу: https://mesto.nomoreparties.co
-
-// return fetch('https://nomoreparties.co/v1/cohort-11/cards', {
-//   headers: {
-//     authorization: '21113fb3-0279-459b-96d2-cacb8e8c5e15'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
-
-
-//Загрузка информации о пользователе с сервера:
-// GET https://nomoreparties.co/v1/cohort-11/users/me
-
-
-//Загрузка карточек с сервера:
-// GET https://nomoreparties.co/v1/cohort-11/cards
-
-
-// Редактирование профиля
-// PATCH https://nomoreparties.co/v1/cohort-11/users/me
+enableValidation({
+  formSelector: '.popup__block',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__item-error_active'
+});

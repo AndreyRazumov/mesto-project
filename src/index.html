@@ -13,6 +13,7 @@
     <!------------Блок header------------>
     <header class="header">
       <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Mesto Россия">
+      <!-- <%=require('./images/header-logo.svg')%> -->
     </header>
     <main class="main">
     <!------------Блок profile------------>
@@ -47,11 +48,11 @@
       <fieldset class="popup__items">
         <label class="popup__field">
           <input type="text" id="popupProfileName" class="popup__item" name="popupProfileName" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="2" maxlength="40" required>
-          <span class="popup__input-error popupProfileName-error">Заполните это поле.</span>
+          <span class="popup__item-error popupProfileName-error">Заполните это поле.</span>
         </label>
         <label class="popup__field">
           <input type="text" id="popupProfileDescription" class="popup__item" name="popupProfileDescription" value="Исследователь океана" placeholder="О себе" minlength="2" maxlength="200" required>
-          <span class="popup__input-error popupProfileDescription-error">Заполните это поле.</span>
+          <span class="popup__item-error popupProfileDescription-error">Заполните это поле.</span>
         </label>
       </fieldset>
       <button class="popup__button-save button button_inactive" id="profile_button-save"  type="submit" aria-label="Сохранить" disabled>Сохранить</button>
@@ -67,11 +68,11 @@
       <fieldset class="popup__items">
         <label class="popup__field">
           <input type="text" id="popupCardsName" class="popup__item" name="popupCardsName" value="" placeholder="Название" minlength="2" maxlength="30" required>
-          <span class="popup__input-error popupCardsName-error">Заполните это поле.</span>
+          <span class="popup__item-error popupCardsName-error">Заполните это поле.</span>
         </label>
         <label class="popup__field">
           <input type="url" id="popupCardsImage" class="popup__item" name="popupCardsImage" value="" placeholder="Ссылка на картинку" required>
-          <span class="popup__input-error popupCardsImage-error">Заполните это поле.</span>
+          <span class="popup__item-error popupCardsImage-error">Заполните это поле.</span>
         </label>
       </fieldset>
       <button class="popup__button-save button button_inactive" id="cards_button-save"  type="submit" aria-label="Сохранить" disabled>Создать</button>
@@ -87,7 +88,7 @@
       <fieldset class="popup__items">
         <label class="popup__field">
           <input id="popupAvatarImage" type="url" name="image-url" class="popup__item" placeholder="Ссылка на аватар" required>
-          <span class="popup__input-error popupAvatarImage-error">Заполните это поле.</span>
+          <span class="popup__item-error popupAvatarImage-error">Заполните это поле.</span>
         </label>
       </fieldset>
         <button class="popup__button-save button button_inactive" type="submit" aria-label="Сохранить аватар" disabled>Сохранить</button>
@@ -95,7 +96,7 @@
     <button class="popup__button-close button" type="button" aria-label="Закрыть"></button>
   </div>
 </div>
-<!------------Блок popup для удаление карточки------------>
+<!------------Блок popup для удаление карточки-----------
 <div class="popup">
   <div class="popup__container popup__container_type_delete">
     <form name="new-place" class="popup__block popup__block_type_delete" novalidate>
@@ -109,7 +110,7 @@
     </form>
     <button class="popup__button-close button" type="button" aria-label="Закрыть"></button>
   </div>
-</div>
+</div>->
 <!------------Блок popup для картинок------------>
 <div class="popup popup_background" id="imagePopup">
   <div class="popup__full-screen">
@@ -131,6 +132,7 @@
     <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
   </li>
 </template>
-<script type="module" src="./scripts/script.js"></script>
+<script type="module" src="./components/index.js"></script>
 </body>
 </html>
+<!-- type="module" -->
