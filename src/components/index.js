@@ -30,7 +30,6 @@ import { addLike } from './utils.js';
 initialCards.forEach((initialCards) => {
   const cardsElement = createСard (initialCards.name, initialCards.link)
   renderCard(cardsElement);
-
 });
 
 
