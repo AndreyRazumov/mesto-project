@@ -1,5 +1,16 @@
-const formCardsAdd = document.forms.cardsAdd;
-const formAvatarAdd =document.forms.avatarAdd;
+import  {
+  profilePopup,
+  cardPopup,
+  avatarPopup,
+  popupProfileName,
+  popupProfileDescription,
+  popupAvatarImage,
+  profileName,
+  profileDesc,
+  profileAvatarImage,
+  formCardsAdd,
+  formAvatarAdd
+} from './vars.js'
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
@@ -22,6 +33,39 @@ function closeByEsc (evt) {
   }
 };
 
+function openProfileButtonEdit () {
+  popupProfileName.value = profileName.textContent;
+  popupProfileDescription.value = profileDesc.textContent;
+  openPopup(profilePopup);
+}
 
-export { formCardsAdd, formAvatarAdd, openPopup, closePopup }
+function openProfileButtonLink () {
+  openPopup(cardPopup);
+}
+
+function openProfileAvatarImage () {
+  openPopup(avatarPopup);
+}
+
+function openAvatarForm (evt) {
+  evt.preventDefault();
+  profileAvatarImage.src = popupAvatarImage.value;
+  closePopup(avatarPopup);
+  formAvatarAdd.reset()
+}
+
+function editingProfileForm (evt) {
+  evt.preventDefault();
+  profileName.textContent = popupProfileName.value;
+  profileDesc.textContent = popupProfileDescription.value;
+  closePopup(profilePopup);
+}
+
+export { openPopup,
+  closePopup,
+  openProfileButtonEdit,
+  openProfileButtonLink,
+  openProfileAvatarImage,
+  openAvatarForm,
+  editingProfileForm }
 

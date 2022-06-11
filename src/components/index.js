@@ -1,29 +1,29 @@
 'use strict';
 
-import {
+import  {
   cardsContainer,
-  profilePopup,
-  cardPopup,
-  avatarPopup,
-  popupCardsName,
-  popupCardsImage,
-  popupProfileName,
-  popupProfileDescription,
-  popupAvatarImage,
   popups,
-  profileName,
-  profileDesc,
   profileButtonEdit,
   profileButtonLink,
   profileAvatarImage,
   profileForm,
   cardForm,
   avatarForm,
-  initialCards
-} from './vars.js'
+  initialCards,
+  formCardsAdd,
+  formAvatarAdd
+} from './vars.js';
+
+import { closePopup,
+  openProfileButtonEdit,
+  openProfileButtonLink,
+  openProfileAvatarImage,
+  openAvatarForm,
+  editingProfileForm } from './modal.js';
+
 import { enableValidation } from './validate.js';
-import { formCardsAdd, formAvatarAdd, openPopup, closePopup } from './modal.js'
-import { createСard, renderCard } from './card.js'
+import { createСard, renderCard, AddCardForm } from './card.js';
+import { addLike } from './utils.js';
 
 
 // Загрузка карточек:
@@ -35,34 +35,15 @@ initialCards.forEach((initialCards) => {
 
 
 //Добавление лайков:
-cardsContainer.addEventListener ('click', (evt) => {
-  if (evt.target.classList.contains('element__button-like')){
-    evt.target.classList.toggle('element__button-like_active');
-  }
-});
+cardsContainer.addEventListener ('click', addLike);
 
 
 // Открытие popup:
-profileButtonEdit.addEventListener('click', () => {
-  popupProfileName.value = profileName.textContent;
-  popupProfileDescription.value = profileDesc.textContent;
-  openPopup(profilePopup);
-});
+profileButtonEdit.addEventListener('click', openProfileButtonEdit);
+profileButtonLink.addEventListener('click', openProfileButtonLink);
+profileAvatarImage.addEventListener('click', openProfileAvatarImage);
+avatarForm.addEventListener('submit', openAvatarForm);
 
-profileButtonLink.addEventListener('click', () => {
-  openPopup(cardPopup);
-});
-
-profileAvatarImage.addEventListener('click', () => {
-  openPopup(avatarPopup);
-});
-
-avatarForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  profileAvatarImage.src = popupAvatarImage.value;
-  closePopup(avatarPopup);
-  formAvatarAdd.reset()
-});
 
 //Закрытие popup:
 popups.forEach((popup) => {
@@ -77,22 +58,11 @@ popups.forEach((popup) => {
 
 
 // Добавить карточки:
-cardForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
-  renderCard (cardsElement);
-  closePopup(cardPopup);
-  formCardsAdd.reset()
-});
+cardForm.addEventListener('submit', AddCardForm);
 
 
 // Редактирование профиля:
-profileForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  profileName.textContent = popupProfileName.value;
-  profileDesc.textContent = popupProfileDescription.value;
-  closePopup(profilePopup);
-});
+profileForm.addEventListener('submit', editingProfileForm);
 
 
 // Валидация:

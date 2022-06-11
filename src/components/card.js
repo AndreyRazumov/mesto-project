@@ -1,11 +1,15 @@
-import {
+import  {
   cardsTemplate,
   cardsContainer,
   popupImage,
+  cardPopup,
   imagePopup,
+  popupCardsName,
+  popupCardsImage,
   popupFigcaption,
-} from './vars.js'
-import { openPopup } from './modal.js'
+  formCardsAdd,
+} from './vars.js';
+import { openPopup, closePopup } from './modal.js';
 
 // Функция создания карточки
 function createСard (name, link) {
@@ -36,4 +40,12 @@ function renderCard (cardsElement) {
   cardsContainer.prepend(cardsElement);
 }
 
-export { createСard, renderCard }
+function AddCardForm  (evt) {
+  evt.preventDefault();
+  const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
+  renderCard (cardsElement);
+  closePopup(cardPopup);
+  formCardsAdd.reset()
+}
+
+export { createСard, renderCard, AddCardForm }

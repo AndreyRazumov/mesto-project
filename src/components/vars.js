@@ -27,6 +27,8 @@ const avatarForm = document.querySelector('#avatarForm');
 
 const popupFigcaption = document.querySelector('.popup__figcaption');
 
+const formCardsAdd = document.forms.cardsAdd;
+const formAvatarAdd =document.forms.avatarAdd;
 
 const initialCards = [
   {
@@ -79,5 +81,7 @@ export {
   cardForm,
   avatarForm,
   popupFigcaption,
-  initialCards
+  initialCards,
+  formCardsAdd,
+  formAvatarAdd
 }
