@@ -2,6 +2,8 @@
 
 
 import { enableValidation } from './validate.js';
+import { formCardsAdd, formAvatarAdd, openPopup, closePopup } from './modal.js'
+
 
 const cardsTemplate = document.querySelector('#template').content;
 const cardsContainer = document.querySelector('.elements__list');
@@ -32,8 +34,6 @@ const avatarForm = document.querySelector('#avatarForm');
 
 const popupFigcaption = document.querySelector('.popup__figcaption');
 
-const formCardsAdd = document.forms.cardsAdd;
-const formAvatarAdd =document.forms.avatarAdd;
 
 
 
@@ -123,29 +123,9 @@ cardForm.addEventListener('submit', (evt) => {
 });
 
 
-// функция закрытия по Esc
-function closeByEsc (evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-    formCardsAdd.reset()
-    formAvatarAdd.reset()
-  }
-};
-
 
 // Открытие и закрытие popup:
-function openPopup (popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
-};
 
-function closePopup (popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEsc);
-};
 
 profileButtonEdit.addEventListener('click', () => {
   popupProfileName.value = profileName.textContent;
