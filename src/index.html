@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" sizes="16x16" href="./images/Profile-avatar.jpg">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>&laquo;Mesto&raquo;</title>
+</head>
+<body class="page">
+  <div class="root">
+    <!------------Блок header------------>
+    <header class="header">
+      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Mesto Россия">
+      <!-- <%=require('./images/header-logo.svg')%> -->
+    </header>
+    <main class="main">
+    <!------------Блок profile------------>
+      <section class="profile">
+        <div class="profile__avatar-box">
+          <img class="button profile__avatar-image" src="./images/profile-avatar.jpg" alt="Аватарка">
+        </div>
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="button profile__button-edit" type="button" aria-label="Редактировать"></button>
+          <p class="profile__desc">Исследователь океана</p>
+        </div>
+        <button class="profile__button-link button" type="button" aria-label="Добавить картинку"></button>
+      </section>
+    <!------------Блок elements------------>
+      <section class="elements">
+        <ul class="elements__list">
+
+        </ul>
+      </section>
+    </main>
+    <!------------Блок footer------------>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;&nbsp;2022 Андрей Разумов</p>
+    </footer>
+  </div>
+<!------------Блок popup для профиля------------>
+ <div class="popup" id="profilePopup">
+  <div class="popup__container">
+    <form class="popup__block" id="profileForm" name="profileEdit" novalidate>
+        <h2 class="popup__title">Редактировать профиль</h2>
+      <fieldset class="popup__items">
+        <label class="popup__field">
+          <input type="text" id="popupProfileName" class="popup__item" name="popupProfileName" value="Жак-Ив Кусто" placeholder="Ваше Имя" minlength="2" maxlength="40" required>
+          <span class="popup__item-error popupProfileName-error">Заполните это поле.</span>
+        </label>
+        <label class="popup__field">
+          <input type="text" id="popupProfileDescription" class="popup__item" name="popupProfileDescription" value="Исследователь океана" placeholder="О себе" minlength="2" maxlength="200" required>
+          <span class="popup__item-error popupProfileDescription-error">Заполните это поле.</span>
+        </label>
+      </fieldset>
+      <button class="popup__button-save button button_inactive" id="profile_button-save"  type="submit" aria-label="Сохранить" disabled>Сохранить</button>
+    </form>
+    <button class="popup__button-close button" id="profile_button-close" type="button" aria-label="Закрыть"></button>
+  </div>
+</div>
+<!------------Блок popup для карточки------------>
+ <div class="popup" id="cardPopup">
+  <div class="popup__container">
+    <form class="popup__block" id="cardForm" name="cardsAdd" novalidate>
+        <h2 class="popup__title">Новое место</h2>
+      <fieldset class="popup__items">
+        <label class="popup__field">
+          <input type="text" id="popupCardsName" class="popup__item" name="popupCardsName" value="" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__item-error popupCardsName-error">Заполните это поле.</span>
+        </label>
+        <label class="popup__field">
+          <input type="url" id="popupCardsImage" class="popup__item" name="popupCardsImage" value="" placeholder="Ссылка на картинку" required>
+          <span class="popup__item-error popupCardsImage-error">Заполните это поле.</span>
+        </label>
+      </fieldset>
+      <button class="popup__button-save button button_inactive" id="cards_button-save"  type="submit" aria-label="Сохранить" disabled>Создать</button>
+    </form>
+    <button class="popup__button-close button" id="cards_button-close" type="button" aria-label="Закрыть"></button>
+  </div>
+</div>
+<!------------Блок popup для аватарки------------>
+<div class="popup" id="avatarPopup">
+  <div class="popup__container popup__container_type_avatar">
+    <form class="popup__block popup__block_type_avatar" id="avatarForm" name="avatarAdd" novalidate>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <fieldset class="popup__items">
+        <label class="popup__field">
+          <input id="popupAvatarImage" type="url" name="image-url" class="popup__item" placeholder="Ссылка на аватар" required>
+          <span class="popup__item-error popupAvatarImage-error">Заполните это поле.</span>
+        </label>
+      </fieldset>
+        <button class="popup__button-save button button_inactive" type="submit" aria-label="Сохранить аватар" disabled>Сохранить</button>
+    </form>
+    <button class="popup__button-close button" type="button" aria-label="Закрыть"></button>
+  </div>
+</div>
+<!------------Блок popup для удаление карточки-----------
+<div class="popup">
+  <div class="popup__container popup__container_type_delete">
+    <form name="new-place" class="popup__block popup__block_type_delete" novalidate>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <fieldset class="popup__items">
+        <label class="popup__field popup__field_type_delete">
+          <input id="popupDelete" type="text" name="id-card" class="popup__item popup__item_type_delete" placeholder="Ссылка на аватар" required>
+        </label>
+      </fieldset>
+        <button class="popup__button-save button" type="submit" aria-label="Подтвердить удаление">Да</button>
+    </form>
+    <button class="popup__button-close button" type="button" aria-label="Закрыть"></button>
+  </div>
+</div>->
+<!------------Блок popup для картинок------------>
+<div class="popup popup_background" id="imagePopup">
+  <div class="popup__full-screen">
+    <figure class="popup__figure">
+      <img class="popup__image" src="#" alt="">
+      <figcaption class="popup__figcaption"></figcaption>
+    </figure>
+    <button class="popup__button-close button" id="images_button-close" type="button" aria-label="закрыть"></button>
+  </div>
+</div>
+<!------------Блок template------------>
+<template id="template">
+  <li class="element">
+    <img class="element__image" src="#" alt="">
+    <div class="element__cell">
+      <h2 class="element__caption"></h2>
+      <button class="element__button-like button" type="button" aria-label="Лайкнуть"></button>
+    </div>
+    <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
+  </li>
+</template>
+<script type="module" src="./components/index.js"></script>
+</body>
+</html>
+<!-- type="module" -->
