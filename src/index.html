@@ -4,22 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" sizes="16x16" href="./images/Profile-avatar.jpg">
-  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" sizes="16x16" href="<%=require('./images/Profile-avatar.jpg')%>">
   <title>&laquo;Mesto&raquo;</title>
 </head>
 <body class="page">
   <div class="root">
     <!------------Блок header------------>
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Mesto Россия">
-      <!-- <%=require('./images/header-logo.svg')%> -->
+      <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип Mesto Россия">
     </header>
     <main class="main">
     <!------------Блок profile------------>
       <section class="profile">
         <div class="profile__avatar-box">
-          <img class="button profile__avatar-image" src="./images/profile-avatar.jpg" alt="Аватарка">
+          <img class="button profile__avatar-image" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватарка">
         </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -110,7 +108,7 @@
     </form>
     <button class="popup__button-close button" type="button" aria-label="Закрыть"></button>
   </div>
-</div>->
+</div>-->
 <!------------Блок popup для картинок------------>
 <div class="popup popup_background" id="imagePopup">
   <div class="popup__full-screen">
@@ -132,7 +130,5 @@
     <button class="element__button-trash button" type="button" aria-label="Удалить"></button>
   </li>
 </template>
-<script type="module" src="./components/index.js"></script>
 </body>
 </html>
-<!-- type="module" -->

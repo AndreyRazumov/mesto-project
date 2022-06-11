@@ -47,7 +47,7 @@ function openProfileAvatarImage () {
   openPopup(avatarPopup);
 }
 
-function openAvatarForm (evt) {
+function editingAvatarForm (evt) {
   evt.preventDefault();
   profileAvatarImage.src = popupAvatarImage.value;
   closePopup(avatarPopup);
@@ -66,6 +66,7 @@ export { openPopup,
   openProfileButtonEdit,
   openProfileButtonLink,
   openProfileAvatarImage,
-  openAvatarForm,
-  editingProfileForm }
+  editingAvatarForm,
+  editingProfileForm
+}
 

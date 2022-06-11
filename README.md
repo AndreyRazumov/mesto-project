@@ -20,3 +20,5 @@ ____
 :heavy_check_mark: Версия языка: :ru:
 
 :heavy_check_mark:  HTML, CSS и JavaScript
+
+:heavy_check_mark: Сборка проекта: Webpack

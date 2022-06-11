@@ -1,5 +1,6 @@
 'use strict';
 
+import '../pages/index.css';
 import  {
   cardsContainer,
   popups,
@@ -18,7 +19,7 @@ import { closePopup,
   openProfileButtonEdit,
   openProfileButtonLink,
   openProfileAvatarImage,
-  openAvatarForm,
+  editingAvatarForm,
   editingProfileForm } from './modal.js';
 
 import { enableValidation } from './validate.js';
@@ -41,7 +42,6 @@ cardsContainer.addEventListener ('click', addLike);
 profileButtonEdit.addEventListener('click', openProfileButtonEdit);
 profileButtonLink.addEventListener('click', openProfileButtonLink);
 profileAvatarImage.addEventListener('click', openProfileAvatarImage);
-avatarForm.addEventListener('submit', openAvatarForm);
 
 
 //Закрытие popup:
@@ -62,6 +62,10 @@ cardForm.addEventListener('submit', AddCardForm);
 
 // Редактирование профиля:
 profileForm.addEventListener('submit', editingProfileForm);
+
+
+// Редактирование аватарки:
+avatarForm.addEventListener('submit', editingAvatarForm);
 
 
 // Валидация:
