@@ -1,20 +1,12 @@
-import  {
-  profilePopup,
-  cardPopup,
-  avatarPopup,
-  popupProfileName,
-  popupProfileDescription,
-  popupAvatarImage,
-  profileName,
-  profileDesc,
-  profileAvatarImage,
-  formCardsAdd,
-  formAvatarAdd
-} from './vars.js'
+import  { formAvatarAdd, formCardsAdd, valid} from './vars.js';
+import { enableValidation } from './validate.js';
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
+  formCardsAdd.reset()
+  formAvatarAdd.reset()
+  enableValidation(valid);
 };
 
 function closePopup (popup) {
@@ -28,45 +20,8 @@ function closeByEsc (evt) {
     if (openedPopup) {
       closePopup(openedPopup);
     }
-    formCardsAdd.reset()
-    formAvatarAdd.reset()
   }
 };
 
-function openProfileButtonEdit () {
-  popupProfileName.value = profileName.textContent;
-  popupProfileDescription.value = profileDesc.textContent;
-  openPopup(profilePopup);
-}
-
-function openProfileButtonLink () {
-  openPopup(cardPopup);
-}
-
-function openProfileAvatarImage () {
-  openPopup(avatarPopup);
-}
-
-function editingAvatarForm (evt) {
-  evt.preventDefault();
-  profileAvatarImage.src = popupAvatarImage.value;
-  closePopup(avatarPopup);
-  formAvatarAdd.reset()
-}
-
-function editingProfileForm (evt) {
-  evt.preventDefault();
-  profileName.textContent = popupProfileName.value;
-  profileDesc.textContent = popupProfileDescription.value;
-  closePopup(profilePopup);
-}
-
-export { openPopup,
-  closePopup,
-  openProfileButtonEdit,
-  openProfileButtonLink,
-  openProfileAvatarImage,
-  editingAvatarForm,
-  editingProfileForm
-}
+export { openPopup, closePopup}
 

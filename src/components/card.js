@@ -1,15 +1,10 @@
 import  {
   cardsTemplate,
-  cardsContainer,
   popupImage,
-  cardPopup,
   imagePopup,
-  popupCardsName,
-  popupCardsImage,
   popupFigcaption,
-  formCardsAdd,
 } from './vars.js';
-import { openPopup, closePopup } from './modal.js';
+import { openPopup } from './modal.js';
 
 // Функция создания карточки
 function createСard (name, link) {
@@ -36,16 +31,12 @@ function createСard (name, link) {
   return cardsElementCopy;
 };
 
-function renderCard (cardsElement) {
-  cardsContainer.prepend(cardsElement);
+
+//Фцнкция добавления лайков:
+function addLike (evt) {
+  if (evt.target.classList.contains('element__button-like')){
+    evt.target.classList.toggle('element__button-like_active');
+  }
 }
 
-function AddCardForm  (evt) {
-  evt.preventDefault();
-  const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
-  renderCard (cardsElement);
-  closePopup(cardPopup);
-  formCardsAdd.reset()
-}
-
-export { createСard, renderCard, AddCardForm }
+export { createСard, addLike }

@@ -67,7 +67,4 @@ function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
   }
 };
 
-
-
-
 export { enableValidation };
