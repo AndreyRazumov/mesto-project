@@ -30,6 +30,15 @@ const popupFigcaption = document.querySelector('.popup__figcaption');
 const formCardsAdd = document.forms.cardsAdd;
 const formAvatarAdd =document.forms.avatarAdd;
 
+const valid = {
+  formSelector: '.popup__block',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__item-error_active'
+};
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -83,5 +92,6 @@ export {
   popupFigcaption,
   initialCards,
   formCardsAdd,
-  formAvatarAdd
+  formAvatarAdd,
+  valid
 }
