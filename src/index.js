@@ -32,7 +32,7 @@ import {
   updateUser,
   setCard,
   deleteCard,
-  addLikes  ,
+  addLikes,
   removeLike,
   updateAvatar } from './components/api.js'
 import { openPopup, closePopup } from './components/modal.js';
