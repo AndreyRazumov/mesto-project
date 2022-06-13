@@ -1,12 +1,7 @@
-import  { formAvatarAdd, formCardsAdd, valid} from './vars.js';
-import { enableValidation } from './validate.js';
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
-  formCardsAdd.reset()
-  formAvatarAdd.reset()
-  enableValidation(valid);
 };
 
 function closePopup (popup) {

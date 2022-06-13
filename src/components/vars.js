@@ -10,7 +10,9 @@ const popupCardsName = document.querySelector('#popupCardsName');
 const popupCardsImage = document.querySelector('#popupCardsImage');
 const popupProfileName = document.querySelector('#popupProfileName');
 const popupProfileDescription = document.querySelector('#popupProfileDescription');
-const popupAvatarImage = document.querySelector('#popupAvatarImage')
+const popupAvatarImage = document.querySelector('#popupAvatarImage');
+const cardsButtonSave = document.querySelector('#cards_button-save');
+const avatarButtonSave = document.querySelector('#avatar_button-save');
 
 const popups = document.querySelectorAll('.popup');
 
@@ -68,11 +70,13 @@ const initialCards = [
 
 
 export {
+  avatarButtonSave,
   cardsTemplate,
   cardsContainer,
   popupImage,
   profilePopup,
   cardPopup,
+  cardsButtonSave,
   avatarPopup,
   imagePopup,
   popupCardsName,
