@@ -1,9 +1,11 @@
 
-import '../pages/index.css';
+import './pages/index.css';
 import  {
+  avatarButtonSave,
   cardsContainer,
   profilePopup,
   cardPopup,
+  cardsButtonSave,
   avatarPopup,
   popupCardsName,
   popupCardsImage,
@@ -20,12 +22,14 @@ import  {
   cardForm,
   avatarForm,
   initialCards,
+  formAvatarAdd,
+  formCardsAdd,
   valid
-} from './vars.js';
+} from './components/vars.js';
 
-import { openPopup, closePopup } from './modal.js';
-import { enableValidation } from './validate.js';
-import { createСard, addLike } from './card.js';
+import { openPopup, closePopup } from './components/modal.js';
+import { enableValidation, validButtoSave } from './components/validate.js';
+import { createСard, addLike } from './components/card.js';
 
 
 // Загрузка карточек:
@@ -52,10 +56,14 @@ function openProfileButtonEdit () {
 }
 
 function openProfileButtonLink () {
+  formCardsAdd.reset();
+  validButtoSave (cardsButtonSave);
   openPopup(cardPopup);
 }
 
 function openProfileAvatarImage () {
+  formAvatarAdd.reset();
+  validButtoSave (avatarButtonSave);
   openPopup(avatarPopup);
 }
 
