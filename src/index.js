@@ -26,7 +26,15 @@ import  {
   formCardsAdd,
   valid
 } from './components/vars.js';
-
+import {
+  getUser,
+  getCards,
+  updateUser,
+  setCard,
+  deleteCard,
+  addLikes  ,
+  removeLike,
+  updateAvatar } from './components/api.js'
 import { openPopup, closePopup } from './components/modal.js';
 import { enableValidation, validButtonSave } from './components/validate.js';
 import { createСard, addLike } from './components/card.js';
@@ -113,6 +121,19 @@ function editingAvatarForm (evt) {
 }
 
 avatarForm.addEventListener('submit', editingAvatarForm);
+
+
+// Загрузка:
+function renderLoading (isLoading, buttonSave) {
+  if (isLoading) {
+    buttonSave.textContent = 'Сохранение...'
+  }else{
+    buttonSave.textContent = 'Сохранено'
+    }
+}
+
+
+
 
 
 Валидация:
