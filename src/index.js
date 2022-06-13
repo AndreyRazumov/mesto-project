@@ -28,7 +28,7 @@ import  {
 } from './components/vars.js';
 
 import { openPopup, closePopup } from './components/modal.js';
-import { enableValidation, validButtoSave } from './components/validate.js';
+import { enableValidation, validButtonSave } from './components/validate.js';
 import { createСard, addLike } from './components/card.js';
 
 
@@ -57,13 +57,13 @@ function openProfileButtonEdit () {
 
 function openProfileButtonLink () {
   formCardsAdd.reset();
-  validButtoSave (cardsButtonSave);
+  validButtonSave (cardsButtonSave);
   openPopup(cardPopup);
 }
 
 function openProfileAvatarImage () {
   formAvatarAdd.reset();
-  validButtoSave (avatarButtonSave);
+  validButtonSave (avatarButtonSave);
   openPopup(avatarPopup);
 }
 
