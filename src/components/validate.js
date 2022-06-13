@@ -67,11 +67,11 @@ function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
   }
 };
 
-function validButtoSave (buttonSave) {
+function validButtonSave (buttonSave) {
   if (!buttonSave.classList.contains('button_inactive')) {
     buttonSave.classList.add('button_inactive');
     buttonSave.setAttribute('disabled', '');
   }
 }
 
-export { enableValidation, validButtoSave };
+export { enableValidation, validButtonSave };
