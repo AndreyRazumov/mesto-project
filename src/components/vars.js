@@ -13,6 +13,7 @@ const popupProfileDescription = document.querySelector('#popupProfileDescription
 const popupAvatarImage = document.querySelector('#popupAvatarImage');
 const cardsButtonSave = document.querySelector('#cards_button-save');
 const avatarButtonSave = document.querySelector('#avatar_button-save');
+const profileButtonSave = document.querySelector('#profile_button-save');
 
 const popups = document.querySelectorAll('.popup');
 
@@ -71,6 +72,7 @@ const initialCards = [
 
 export {
   avatarButtonSave,
+  profileButtonSave,
   cardsTemplate,
   cardsContainer,
   popupImage,

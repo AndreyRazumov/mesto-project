@@ -58,7 +58,7 @@ const setCard = (name, link) => {
       link
     })
   })
-.then(checkResponse)
+  .then(checkResponse)
 }
 
 
@@ -80,7 +80,7 @@ const addLikes = (cardID)=>{
   .then(checkResponse)
 }
 
-const removeLike = (cardID)=>{
+const removeLikes = (cardID)=>{
   return  fetch(`${config.baseUrl}/cards/likes/${cardID}`, {
     method: 'DELETE',
     headers: config.headers
@@ -91,12 +91,12 @@ const removeLike = (cardID)=>{
 // Обновление аватара пользователя
 const updateAvatar = (avatar) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
-  method: 'PATCH',
-  headers: config.headers,
-  body: JSON.stringify({
-    avatar
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar
+    })
   })
-})
   .then(checkResponse)
 }
 
@@ -108,5 +108,5 @@ export {
   setCard,
   deleteCard,
   addLikes,
-  removeLike,
+  removeLikes,
   updateAvatar }
