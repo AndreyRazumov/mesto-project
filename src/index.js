@@ -104,8 +104,6 @@ function AddCardForm  (evt) {
   cardsButtonSave.textContent = 'Сохранение...';
   setCard(popupCardsName.value, popupCardsImage.value)
     .then(data => {
-      console.log(data)
-      console.log(popupCardsName.value)
       const card = createCard(data);
       cardsContainer.prepend(card);
       closePopup(cardPopup);
