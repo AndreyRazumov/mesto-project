@@ -18,5 +18,5 @@ function closeByEsc (evt) {
   }
 };
 
-export { openPopup, closePopup }
 
+export { openPopup, closePopup }

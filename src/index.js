@@ -22,9 +22,8 @@ import  {
   profileForm,
   cardForm,
   avatarForm,
-  initialCards,
-  formAvatarAdd,
   formCardsAdd,
+  formAvatarAdd,
   valid
 } from './components/vars.js';
 import {
@@ -35,7 +34,7 @@ import {
   updateAvatar } from './components/api.js'
 import { openPopup, closePopup } from './components/modal.js';
 import { enableValidation, validButtonSave } from './components/validate.js';
-import { createCard, addReactionListener, clickOnElmentImage } from './components/card.js';
+import { createCard } from './components/card.js';
 
 
 // Загрузка карточек:
@@ -49,20 +48,19 @@ function initCards (initialCards, userId) {
 }
 
 
+// Загрузка данных с сервера
+const initialPromises = [getUser(), getCards()];
 
-// initialCards.forEach((initialCards) => {
-//   const cardsElement = createCard (initialCards.name, initialCards.link)
-//   renderCard(cardsElement);
-// });
-
-function renderCard (cardsElement) {
-  cardsContainer.prepend(cardsElement);
-}
-
-
-
-//Добавление лайков:
-// cardsContainer.addEventListener ('click', addLike);
+Promise.all(initialPromises)
+  .then((results) => {
+    const userInfo = results[0];
+    const cards = results[1];
+    profileName.textContent = userInfo.name;
+    profileDesc.textContent = userInfo.about;
+    profileAvatarImage.src = userInfo.avatar;
+    initCards(cards, userInfo._id);
+  })
+  .catch(err => console.log(err));
 
 
 // Открытие popup:
@@ -110,20 +108,12 @@ function AddCardForm  (evt) {
       console.log(popupCardsName.value)
       const card = createCard(data);
       cardsContainer.prepend(card);
-      // createСard (popupCardsName.value, popupCardsImage.value)
-      // renderCard (data)
       closePopup(cardPopup);
     })
     .catch(err => console.log(err))
     .finally(() => {
       cardsButtonSave.textContent = 'Создать';
     });
-
-
-
-  // const cardsElement = createСard (popupCardsName.value, popupCardsImage.value);
-  // renderCard (cardsElement);
-  // closePopup(cardPopup);
 }
 
 cardForm.addEventListener('submit', AddCardForm);
@@ -170,17 +160,4 @@ avatarForm.addEventListener('submit', editingAvatarForm);
 enableValidation(valid);
 
 
-// Загрузка данных с сервера
-const initialPromises = [getUser(), getCards()];
 
-Promise.all(initialPromises)
-  .then((results) => {
-    console.log(results)
-    const userInfo = results[0];
-    const cards = results[1];
-    profileName.textContent = userInfo.name;
-    profileDesc.textContent = userInfo.about;
-    profileAvatarImage.src = userInfo.avatar;
-    initCards(cards, userInfo._id);
-  })
-  .catch(err => console.log(err));
