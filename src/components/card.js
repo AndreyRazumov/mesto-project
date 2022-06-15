@@ -108,7 +108,7 @@ function clickOnElmentImage (evt) {
   const elementImag = evt.target;
   const cardElement = elementImag.closest('.element');
   const elementCaption = cardElement.querySelector('.element__caption').textContent;
-  popupImage.src = elementImag.dataset.image;
+  popupImage.src = elementImag.src;
   popupFigcaption.textContent = popupImage.alt = elementCaption;
   openPopup(imagePopup);
 };
@@ -131,7 +131,7 @@ function createCard (card, isSelf = true, isLiked = false) {
 
   cardElement.id = _id;
   elementImage.src = link;
-  elementImage.dataset.image = link;
+  elementImage.alt = name;
   elementButtonLikeNum.textContent = likes.length;
   elementCaption.textContent = name;
 
