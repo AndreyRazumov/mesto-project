@@ -66,13 +66,8 @@ import { openPopup } from './modal.js';
 // };
 
 
-//Фцнкция добавления лайков:
-// function addLike (evt) {
-//   if (evt.target.classList.contains('element__button-like')){
-//     evt.target.classList.toggle('element__button-like_active');
-//   }
-// }
-/////////////////
+
+// Фцнкция добавления лайков:
 function addReactionListener (button) {
   const cardItemElement = button.closest('.element');
   const elementButtonLikeNum = button.querySelector('.element__button-like-num');
@@ -97,13 +92,25 @@ function addReactionListener (button) {
 
 
 
-// function deleteCard (evt) {
-//   const deleteButton = evt.target;
-//   const cardItem = deleteButton.closest('.element');
-//   // openConfirmationPopup(cardItem.id);
-// };
+// Функция удаления карточки
+function formHandlerDelete (cardItemId) {
+  const cardElement = document.getElementById(`${cardItemId}`);
+
+  deleteCard(cardItemId)
+    .then(() => {
+      cardElement.remove();
+    })
+    .catch(err => console.log(err))
+  }
+
+  function deleteCards (evt) {
+    const deleteButton = evt.target;
+    const cardItem = deleteButton.closest('.element');
+    formHandlerDelete(cardItem.id);
+  };
 
 
+// Функция увеличения картинки
 function clickOnElmentImage (evt) {
   const elementImag = evt.target;
   const cardElement = elementImag.closest('.element');
@@ -122,6 +129,7 @@ function createCard (card, isSelf = true, isLiked = false) {
   const cardElement = cardsElementCopy.querySelector('.element');
   const elementImage = cardElement.querySelector('.element__image');
   const elementCaption = cardsElementCopy.querySelector('.element__caption');
+  const elementButtonTrash = cardsElementCopy.querySelector('.element__button-trash')
   const elementButtonLike = cardsElementCopy.querySelector('.element__button-like');
   const elementButtonLikeNum = elementButtonLike.querySelector('.element__button-like-num');
 
@@ -138,27 +146,18 @@ function createCard (card, isSelf = true, isLiked = false) {
   elementImage.addEventListener('click', clickOnElmentImage);
   addReactionListener(elementButtonLike);
   if (isSelf) {
-    cardsElementCopy.querySelector('.element__button-trash').addEventListener('click', deleteCard);
+    elementButtonTrash.addEventListener('click', deleteCards);
+  }else {
+    elementButtonTrash.classList.add('element__button-trash_inactive');
   }
   return cardsElementCopy;
 }
 
 
 
-// Удалить карточку
-// function deleteElement (evt) {
-//   evt.preventDefault();
-//   const cardId = confirmationInputElement.value;
-//   const cardElement = document.getElementById(`${cardId}`);
-//   deleteCard(cardId)
-//     .then(() => {
-//       cardElement.remove();
-//       closePopup(confirmationPopup);
-//     })
-//     .catch(err => console.log(err))
-//     .finally(() => {
-//       confirmationInputElement.value = '';
-//     });
-// }
+
+
+
+
 
 export { createCard, addReactionListener, clickOnElmentImage }
