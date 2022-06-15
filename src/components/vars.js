@@ -13,6 +13,7 @@ const popupProfileDescription = document.querySelector('#popupProfileDescription
 const popupAvatarImage = document.querySelector('#popupAvatarImage');
 const cardsButtonSave = document.querySelector('#cards_button-save');
 const avatarButtonSave = document.querySelector('#avatar_button-save');
+const profileButtonSave = document.querySelector('#profile_button-save');
 
 const popups = document.querySelectorAll('.popup');
 
@@ -41,36 +42,9 @@ const valid = {
   errorClass: 'popup__item-error_active'
 };
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-
 export {
   avatarButtonSave,
+  profileButtonSave,
   cardsTemplate,
   cardsContainer,
   popupImage,
@@ -94,7 +68,6 @@ export {
   cardForm,
   avatarForm,
   popupFigcaption,
-  initialCards,
   formCardsAdd,
   formAvatarAdd,
   valid

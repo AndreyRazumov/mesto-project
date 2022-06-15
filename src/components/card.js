@@ -2,41 +2,101 @@ import  {
   cardsTemplate,
   popupImage,
   imagePopup,
-  popupFigcaption,
+  popupFigcaption
 } from './vars.js';
+import {
+  deleteCard,
+  addLikes,
+  removeLikes } from './api.js'
 import { openPopup } from './modal.js';
 
-// Функция создания карточки
-function createСard (name, link) {
-  const cardsElementCopy = cardsTemplate.cloneNode(true);
-  const elementImage = cardsElementCopy.querySelector('.element__image');
-  const elementCaption = cardsElementCopy.querySelector('.element__caption');
 
-  elementImage.alt = elementCaption.textContent = name;
-  elementImage.src = link;
+// Фцнкция добавления лайков:
+function addReactionListener (button) {
+  const cardElement = button.closest('.element');
+  const elementButtonLikeNum = button.querySelector('.element__button-like-num');
 
-  // Удалить элемент
-  const elementButtonTrash = cardsElementCopy.querySelector('.element__button-trash');
-  elementButtonTrash.addEventListener('click', () => {
-    elementButtonTrash.closest('.element').remove();
+  button.addEventListener('click', () => {
+    if (!button.classList.contains('element__button-like_active')) {
+      addLikes(cardElement.id)
+        .then((res) => {
+          elementButtonLikeNum.textContent = res.likes.length;
+          button.classList.add('element__button-like_active');
+        })
+        .catch(err => console.log(err));
+    } else {
+      removeLikes(cardElement.id)
+        .then((res) => {
+          elementButtonLikeNum.textContent = res.likes.length;
+          button.classList.remove('element__button-like_active');
+        })
+        .catch(err => console.log(err));
+    }
   });
-
-  // Увеличить картинку
-  cardsElementCopy.querySelector('.element__image').addEventListener ('click', (evt) => {
-  popupImage.src = evt.target.src;
-  popupFigcaption.textContent = popupImage.alt = evt.target.alt;
-  openPopup (imagePopup);
-  });
-
-  return cardsElementCopy;
 };
 
 
-//Фцнкция добавления лайков:
-function addLike (evt) {
-  if (evt.target.classList.contains('element__button-like')){
-    evt.target.classList.toggle('element__button-like_active');
-  }
+// Функция удаления карточки
+function formHandlerDelete (cardItemId) {
+  const cardElement = document.getElementById(`${cardItemId}`);
+
+  deleteCard(cardItemId)
+    .then(() => {
+      cardElement.remove();
+    })
+    .catch(err => console.log(err))
 }
 
-export { createСard, addLike }
+function deleteCards (evt) {
+  const deleteButton = evt.target;
+  const cardElement = deleteButton.closest('.element');
+  formHandlerDelete(cardElement.id);
+};
+
+
+// Функция увеличения картинки
+function clickOnElmentImage (evt) {
+  const elementImag = evt.target;
+  const cardElement = elementImag.closest('.element');
+  const elementCaption = cardElement.querySelector('.element__caption').textContent;
+
+  popupImage.src = elementImag.src;
+  popupFigcaption.textContent = popupImage.alt = elementCaption;
+  openPopup(imagePopup);
+};
+
+
+// Функция создания карточки:
+function createCard (card, isSelf = true, isLiked = false) {
+  const { _id, link, name, likes } = card;
+  const cardsElementCopy = cardsTemplate.cloneNode(true);
+  const cardElement = cardsElementCopy.querySelector('.element');
+  const elementImage = cardElement.querySelector('.element__image');
+  const elementCaption = cardsElementCopy.querySelector('.element__caption');
+  const elementButtonTrash = cardsElementCopy.querySelector('.element__button-trash')
+  const elementButtonLike = cardsElementCopy.querySelector('.element__button-like');
+  const elementButtonLikeNum = elementButtonLike.querySelector('.element__button-like-num');
+
+  cardElement.id = _id;
+  elementImage.src = link;
+  elementImage.alt = name;
+  elementButtonLikeNum.textContent = likes.length;
+  elementCaption.textContent = name;
+
+  if (isSelf) {
+    elementButtonTrash.addEventListener('click', deleteCards);
+  }else {
+    elementButtonTrash.classList.add('element__button-trash_inactive');
+  }
+
+  if (isLiked) {
+    elementButtonLike.classList.add('element__button-like_active');
+  }
+  elementImage.addEventListener('click', clickOnElmentImage);
+  addReactionListener(elementButtonLike);
+
+  return cardsElementCopy;
+}
+
+
+export { createCard }
