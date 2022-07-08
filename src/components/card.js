@@ -7,7 +7,7 @@ import  {
 import {
   deleteCard,
   addLikes,
-  removeLikes } from './api.js'
+  removeLikes } from './api2.js'
 import { openPopup } from './modal.js';
 
 

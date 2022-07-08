@@ -26,9 +26,14 @@ import  {
   formAvatarAdd,
   valid
 } from './components/vars.js';
-import { api } from './components/api.js'
+import {
+  getUser,
+  getCards,
+  updateUser,
+  setCard,
+  updateAvatar } from './components/api2.js'
+// import { api } from './components/api.js'
 import { openPopup, closePopup } from './components/modal.js';
-import { enableValidation, validButtonSave } from './components/validate.js';
 import FormValidator from './components/FormValidator.js';
 import { createCard } from './components/card.js';
 
@@ -68,13 +73,13 @@ function openProfileButtonEdit () {
 
 function openProfileButtonLink () {
   formCardsAdd.reset();
-  validButtonSave (cardsButtonSave);
+  // validButtonSave (cardsButtonSave);
   openPopup(cardPopup);
 }
 
 function openProfileAvatarImage () {
   formAvatarAdd.reset();
-  validButtonSave (avatarButtonSave);
+  // validButtonSave (avatarButtonSave);
   openPopup(avatarPopup);
 }
 
@@ -151,15 +156,13 @@ avatarForm.addEventListener('submit', editingAvatarForm);
 
 
 // Валидация:
-const validator = new FormValidator(valid, formElement);
-
-function enableValidation() {
+(function enableValidation() {
   const formList = Array.from(document.querySelectorAll(valid.formSelector));
   formList.forEach((formElement) => {
+    const validator = new FormValidator(valid, formElement);
     validator.enableVerification()
   });
-};
-enableValidation(valid);
+})()
 
 
 
