@@ -1,6 +1,8 @@
 const cardsTemplate = document.querySelector('#template').content;
 const cardsContainer = document.querySelector('.elements__list');
+
 const popupImage = document.querySelector('.popup__image');
+const popupFigcaption = document.querySelector('.popup__figcaption');
 
 const profilePopup = document.querySelector('#profilePopup');
 const cardPopup = document.querySelector('#cardPopup');
@@ -14,6 +16,7 @@ const popupAvatarImage = document.querySelector('#popupAvatarImage');
 const cardsButtonSave = document.querySelector('#cards_button-save');
 const avatarButtonSave = document.querySelector('#avatar_button-save');
 const profileButtonSave = document.querySelector('#profile_button-save');
+const popupBlock = document.querySelector('.popup__block')
 
 const popups = document.querySelectorAll('.popup');
 
@@ -23,12 +26,12 @@ const profileDesc = document.querySelector('.profile__desc');
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const profileButtonLink = document.querySelector('.profile__button-link');
 const profileAvatarImage = document.querySelector('.profile__avatar-image')
+const buttonLike = document.querySelector('.element__button-like')
 
 const profileForm = document.querySelector('#profileForm');
 const cardForm = document.querySelector('#cardForm');
 const avatarForm = document.querySelector('#avatarForm');
 
-const popupFigcaption = document.querySelector('.popup__figcaption');
 
 const formCardsAdd = document.forms.cardsAdd;
 const formAvatarAdd =document.forms.avatarAdd;
@@ -44,6 +47,8 @@ const valid = {
 
 export {
   avatarButtonSave,
+  buttonLike,
+  popupBlock,
   profileButtonSave,
   cardsTemplate,
   cardsContainer,

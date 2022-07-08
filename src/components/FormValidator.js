@@ -60,12 +60,12 @@ export default class FormValidator {
     }
   };
 
-  validButtonSave (buttonSave) {
-    if (!buttonSave.classList.contains('button_inactive')) {
-      buttonSave.classList.add('button_inactive');
-      buttonSave.setAttribute('disabled', '');
-    }
-  }
+  // validButtonSave (buttonSave) {
+  //   if (!buttonSave.classList.contains('button_inactive')) {
+  //     buttonSave.classList.add('button_inactive');
+  //     buttonSave.setAttribute('disabled', '');
+  //   }
+  // }
 
   enableVerification () {
     this._setEventListeners(this._form);

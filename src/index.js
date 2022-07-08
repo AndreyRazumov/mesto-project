@@ -2,6 +2,7 @@
 // import './pages/index.css';
 import  {
   avatarButtonSave,
+  popupBlock,
   profileButtonSave,
   cardsContainer,
   profilePopup,
@@ -26,17 +27,23 @@ import  {
   formAvatarAdd,
   valid
 } from './components/vars.js';
-import {
-  getUser,
-  getCards,
-  updateUser,
-  setCard,
-  updateAvatar } from './components/api2.js'
-// import { api } from './components/api.js'
-import { openPopup, closePopup } from './components/modal.js';
-import FormValidator from './components/FormValidator.js';
-import { createCard } from './components/card.js';
 
+import { api } from './components/api.js'
+import FormValidator from './components/FormValidator.js';
+import  Card  from './components/Card.js';
+import Section from "./components/Section.js";
+import Popup from './components/Popup.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
+
+import { openPopup, closePopup } from './components/modal.js';
+import { createCard } from './components/card2.js';
+
+
+
+const popupWithImage = new PopupWithImage(imagePopup);
+const avatarPopupElement = new Popup(avatarPopup);
 
 // Загрузка карточек:
 function initCards (initialCards, userId) {
@@ -50,18 +57,42 @@ function initCards (initialCards, userId) {
 
 
 // Загрузка данных с сервера
-const initialPromises = [getUser(), getCards()];
+const initialPromises = [api.getUser(), api.getCards()];
 
 Promise.all(initialPromises)
-  .then((results) => {
+  .then(results => {
+    profileName.textContent = results[0].name;
+    profileDesc.textContent = results[0].about;
+    profileAvatarImage.src = results[0].avatar;
     const userInfo = results[0];
     const cards = results[1];
-    profileName.textContent = userInfo.name;
-    profileDesc.textContent = userInfo.about;
-    profileAvatarImage.src = userInfo.avatar;
+    const userData = new UserInfo(results[0].name, results[0].about);
+    console.log (userData)
+    // console.log (results)
+    // console.log (results[0].about)
+
+    // profileName.textContent = userInfo.name;
+    // profileDesc.textContent = userInfo.about;
+    // profileAvatarImage.src = userInfo.avatar;
     initCards(cards, userInfo._id);
   })
   .catch(err => console.log(err));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Открытие popup:
@@ -103,7 +134,7 @@ popups.forEach((popup) => {
 function AddCardForm  (evt) {
   evt.preventDefault();
   cardsButtonSave.textContent = 'Сохранение...';
-  setCard(popupCardsName.value, popupCardsImage.value)
+  api.setCard(popupCardsName.value, popupCardsImage.value)
     .then(data => {
       const card = createCard(data);
       cardsContainer.prepend(card);
@@ -122,7 +153,7 @@ cardForm.addEventListener('submit', AddCardForm);
 function editingProfileForm (evt) {
   evt.preventDefault();
   profileButtonSave.textContent = 'Сохранение...';
-  updateUser(popupProfileName.value,  popupProfileDescription.value)
+  api.updateUser(popupProfileName.value,  popupProfileDescription.value)
     .then(data => {
       profileName.textContent = data.name;
       profileDesc.textContent = data.about;
@@ -141,7 +172,7 @@ profileForm.addEventListener('submit', editingProfileForm);
 function editingAvatarForm (evt) {
   evt.preventDefault();
   avatarButtonSave.textContent = 'Сохранение...';
-  updateAvatar(popupAvatarImage.value)
+  api.updateAvatar(popupAvatarImage.value)
     .then(data => {
       profileAvatarImage.src = data.avatar;
       closePopup(avatarPopup);
