@@ -1,5 +1,5 @@
 
-import './pages/index.css';
+// import './pages/index.css';
 import  {
   avatarButtonSave,
   profileButtonSave,
@@ -26,14 +26,10 @@ import  {
   formAvatarAdd,
   valid
 } from './components/vars.js';
-import {
-  getUser,
-  getCards,
-  updateUser,
-  setCard,
-  updateAvatar } from './components/api.js'
+import { api } from './components/api.js'
 import { openPopup, closePopup } from './components/modal.js';
 import { enableValidation, validButtonSave } from './components/validate.js';
+import FormValidator from './components/FormValidator.js';
 import { createCard } from './components/card.js';
 
 
@@ -155,6 +151,14 @@ avatarForm.addEventListener('submit', editingAvatarForm);
 
 
 // Валидация:
+const validator = new FormValidator(valid, formElement);
+
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll(valid.formSelector));
+  formList.forEach((formElement) => {
+    validator.enableVerification()
+  });
+};
 enableValidation(valid);
 
 
