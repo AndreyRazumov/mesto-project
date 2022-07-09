@@ -1,14 +1,19 @@
+import  {
+  imagePopup,
+  popupImage,
+  popupFigcaption
+} from './vars.js';
 export default class Card {
-  constructor ({ api, card, userId, handleCardClick, templateSelector }) {
+  constructor ( api, item, userId, templateSelector ) {
     this._api = api;
-    this._data = card;
-    this._name = card.name;
-    this._link = card.link;
-    this._cardId = card._id;
-    this._ownerId = card.owner._id;
-    this._cardLikes = card.likes;
+    this._card = item;
+    this._name = item.name;
+    this._link = item.link;
+    this._cardId = item._id;
+    this._ownerId = item.owner._id;
+    this._cardLikes = item.likes;
     this._userId = userId;
-    this._handleCardClick = handleCardClick;
+    // this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
 
   }
@@ -61,10 +66,26 @@ export default class Card {
 
   }
 
+  // _handleCardClick() {
+  //   const cardPopup = new PopupWithImage(imagePopup, this._link, this._name);
+  //   popupImage.src = this._link;
+  //   popupFigcaption.textContent = this._name;
+  //   cardPopup.open();
 
+  // }
+  _refreshLikes() {
+    if (Boolean(card.likes.find(like => like._id === this._userId))) {
+      this._element.classList.add('element__button-like_active');
+    }
+  }
 
-
-
+  _addDeleteButton() {
+    if (this._ownerId === this._userId) {
+      this._element.addEventListener('click', this._deleteCard);
+    }else {
+      this._element.classList.add('element__button-trash_inactive');
+    }
+  }
 
   //Навесим слушатели на кнопки
   _setEventListeners() {
@@ -84,32 +105,28 @@ export default class Card {
   //Публичный метод генерации карточки
   generate() {
     this._element = this._getElement();
-    this._setEventListeners();
-
-    this._cardElement = this._element.querySelector('.element');
+    // this._setEventListeners();
+    // this._addDeleteButton();
+    // this._refreshLikes()
+    // _addReactionListener()
+    this._cardElement = this._element
     this._elementImage = this._element.querySelector('.element__image');
     this._elementCaption = this._element.querySelector('.element__caption');
     this._elementButtonTrash = this._element.querySelector('.element__button-trash')
     this._elementButtonLike = this._element.querySelector('.element__button-like');
     this._elementButtonLikeNum = this._element.querySelector('.element__button-like-num');
 
-    this._cardElement.id = this.__id;
+
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
-    this._elementButtonLikeNum.textContent = this._likes.length;
+    this._elementButtonLikeNum.textContent = this._cardLikes.length;
     this._elementCaption.textContent = this._name;
+    this._element.id = this._ownerId;
+    console.log(this._name)
+    console.log(this._element);
+    console.log(this._cardElement.id);
+    console.log(this._cardLikes.length);
 
-    if (this._ownerId === this._userId) {
-      elementButtonTrash.addEventListener('click', this._deleteCard);
-    }else {
-      elementButtonTrash.classList.add('element__button-trash_inactive');
-    }
-
-    if (Boolean(card.likes.find(like => like._id === this._userId))) {
-      elementButtonLike.classList.add('element__button-like_active');
-    }
-
-    _addReactionListener();
 
     return this._element;
 
@@ -135,5 +152,5 @@ export default class Card {
     // }
 
     //   return this._element;
-    }
+  };
  }

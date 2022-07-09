@@ -22,10 +22,10 @@ const popups = document.querySelectorAll('.popup');
 
 const profileName = document.querySelector('.profile__name');
 const profileDesc = document.querySelector('.profile__desc');
+const profileAvatarImage = document.querySelector('.profile__avatar-image')
 
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const profileButtonLink = document.querySelector('.profile__button-link');
-const profileAvatarImage = document.querySelector('.profile__avatar-image')
 const buttonLike = document.querySelector('.element__button-like')
 
 const profileForm = document.querySelector('#profileForm');

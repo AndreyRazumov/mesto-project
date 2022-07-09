@@ -38,45 +38,79 @@ import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 
 import { openPopup, closePopup } from './components/modal.js';
-import { createCard } from './components/card2.js';
+// import { createCard } from './components/card2.js';
+import { refreshProfile } from './components/utils.js';
 
 
 
 const popupWithImage = new PopupWithImage(imagePopup);
 const avatarPopupElement = new Popup(avatarPopup);
 
-// Загрузка карточек:
-function initCards (initialCards, userId) {
-  initialCards.forEach((card) => {
-    const isSelf = userId === card.owner._id;
-    const isLiked = Boolean(card.likes.find(like => like._id === userId));
-    const newCard = createCard(card, isSelf, isLiked);
-    cardsContainer.append(newCard);
-  });
-}
 
+
+// let cardsList;
+// let userData;
 
 // Загрузка данных с сервера
-const initialPromises = [api.getUser(), api.getCards()];
+// const initialPromises = [api.getUser(), api.getCards()];
 
-Promise.all(initialPromises)
-  .then(results => {
-    profileName.textContent = results[0].name;
-    profileDesc.textContent = results[0].about;
-    profileAvatarImage.src = results[0].avatar;
-    const userInfo = results[0];
-    const cards = results[1];
-    const userData = new UserInfo(results[0].name, results[0].about);
-    console.log (userData)
-    // console.log (results)
-    // console.log (results[0].about)
+// Promise.all(initialPromises)
+//   .then(results => {
+//     profileName.textContent = results[0].name;
+//     profileDesc.textContent = results[0].about;
+//     profileAvatarImage.src = results[0].avatar;
+//     const userInfo = results[0];
+//     const cards = results[1];
+//     const userData = new UserInfo(results[0].name, results[0].about);
+//     console.log (userData)
+//     // console.log (results)
+//     // console.log (results[0].about)
 
-    // profileName.textContent = userInfo.name;
-    // profileDesc.textContent = userInfo.about;
-    // profileAvatarImage.src = userInfo.avatar;
-    initCards(cards, userInfo._id);
+//   })
+//   .catch(err => console.log(err));
+
+Promise.all([api.getCards(), api.getUser()])
+  .then(([cardsInfo, user]) => {
+    const userInfo = new UserInfo({ profileName, profileDesc, profileAvatarImage });
+    const userId = user._id;
+    userInfo.setUserInfo(user);
+
+    console.log('init cards', cardsInfo);
+    console.log(userId);
+    console.log(userInfo);
+
+    const cardList = new Section({
+      items: cardsInfo,
+      renderer: (item) => {
+        const card = new Card (
+          api,
+          item,
+          userId,
+          // handleCardClick: () => {
+          //   // const popupWithImage = new PopupWithImage(imgPopupOpen);
+          //   // popupWithImage.open();
+          // },
+          '#template'
+        );
+        const cardElement = card.generate();
+        cardList.addItem(cardElement);
+        // refreshLikes(_element, json)
+      }
+    }, cardsContainer);
+
   })
-  .catch(err => console.log(err));
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+  // console.log(cardList)
+
+
+  // cardList.rendererItems();
+  // refreshProfile(userInfo.name, userInfo.about, userInfo.avatar);
+  //  const myID = userInfo._id;
+  //  console.log (myID)
 
 
 
@@ -87,11 +121,15 @@ Promise.all(initialPromises)
 
 
 
-
-
-
-
-
+// Загрузка карточек:
+// function initCards (initialCards, userId) {
+//   initialCards.forEach((card) => {
+//     const isSelf = userId === card.owner._id;
+//     const isLiked = Boolean(card.likes.find(like => like._id === userId));
+//     const newCard = createCard(card, isSelf, isLiked);
+//     cardsContainer.append(newCard);
+//   });
+// }
 
 
 
