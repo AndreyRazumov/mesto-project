@@ -3,17 +3,18 @@ import  {
   popupImage,
   popupFigcaption
 } from './vars.js';
+import PopupWithImage from './PopupWithImage.js';
+
 export default class Card {
-  constructor ( api, item, userId, templateSelector ) {
+  constructor ( {api, data, userId, templateSelector} ) {
     this._api = api;
-    this._card = item;
-    this._name = item.name;
-    this._link = item.link;
-    this._cardId = item._id;
-    this._ownerId = item.owner._id;
-    this._cardLikes = item.likes;
+    this._card = data;
+    this._name = data.name;
+    this._link = data.link;
+    this._cardId = data._id;
+    this._ownerId = data.owner._id;
+    this._cardLikes = data.likes;
     this._userId = userId;
-    // this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
 
   }
@@ -66,13 +67,10 @@ export default class Card {
 
   }
 
-  // _handleCardClick() {
-  //   const cardPopup = new PopupWithImage(imagePopup, this._link, this._name);
-  //   popupImage.src = this._link;
-  //   popupFigcaption.textContent = this._name;
-  //   cardPopup.open();
-
-  // }
+  _handleCardClick() {
+    const cardPopup = new PopupWithImage(imagePopup, this._link, this._name);
+    cardPopup.open();
+  }
   _refreshLikes() {
     if (Boolean(card.likes.find(like => like._id === this._userId))) {
       this._element.classList.add('element__button-like_active');
@@ -102,10 +100,11 @@ export default class Card {
     this._handleCardClick();
     })
   }
+
   //Публичный метод генерации карточки
   generate() {
     this._element = this._getElement();
-    // this._setEventListeners();
+    this._setEventListeners();
     // this._addDeleteButton();
     // this._refreshLikes()
     // _addReactionListener()
@@ -122,10 +121,10 @@ export default class Card {
     this._elementButtonLikeNum.textContent = this._cardLikes.length;
     this._elementCaption.textContent = this._name;
     this._element.id = this._ownerId;
-    console.log(this._name)
-    console.log(this._element);
-    console.log(this._cardElement.id);
-    console.log(this._cardLikes.length);
+    // console.log(this._name)
+    // console.log(this._element);
+    // console.log(this._cardElement.id);
+    // console.log(this._cardLikes.length);
 
 
     return this._element;

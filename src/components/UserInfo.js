@@ -1,49 +1,60 @@
+// export default class UserInfo {
+//   constructor(userNameSelector, userAboutSelector, userAvatarSelector) {
+//     this._userNameSelector = userNameSelector;
+//     this._userAboutSelector = userAboutSelector;
+//     this._userAvatarSelector = userAvatarSelector;
+//   }
+
+//   //Возвращает данные о пользователе
+//   getUserInfo(apiMethod) {
+//     return apiMethod;
+//   }
+
+//   _refreshUserInfo({name=null, about = null, avatar = null}) {
+//     if(name)
+//       document.querySelector(this._userNameSelector).textContent = name;
+//     if(about)
+//       document.querySelector(this._userAboutSelector).textContent = about;
+//     if(avatar)
+//       document.querySelector(this._userAvatarSelector).style.backgroundImage = `url('${avatar}')`;
+//   };
+
+//   //ВОтправляет данные о пользователе
+//   setUserInfo({name, about}, apiMethod) {
+//     apiMethod(name, about)
+//       .then((json) => {
+//         console.log('New profile data: ', json);
+//         this._refreshUserInfo(json);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   }
+// }
+
+
 export default class UserInfo {
-  constructor({userNameSelector, userAboutSelector, userAvatarSelector}) {
-    this._userNameSelector = userNameSelector;
-    this._userAboutSelector = userAboutSelector;
-    this._userAvatarSelector = userAvatarSelector;
-
+  constructor({ userName, userAbout, userAvatar }) {
+    this._userName = userName;
+    this._userAbout = userAbout;
+    this._userAvatar = userAvatar;
   }
-  getUserInfo(apiMethod) {
-    return apiMethod;
-  }
-  refreshUserInfo({name=null, about = null, avatar = null}) {
-    if(name)
-      document.querySelector(this._userNameSelector).textContent = name;
-    if(about)
-      document.querySelector(this._userAboutSelector).textContent = about;
-    if(avatar)
-      document.querySelector(this._userAvatarSelector).style.backgroundImage = `url('${avatar}')`;
-  };
-  
-  setUserInfo({name, about}, apiMethod) {
-    apiMethod(name, about)
-      .then((json) => {
-        console.log('New profile data: ', json);
-        this.refreshUserInfo(json);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-}
-//   getUserInfo() {
-//     const userInfo = {
-//       name: this._nameUser.textContent,
-//       about: this._jobUser.textContent,
-//       avatar: this._urlAvatarUser.src
-//     }
 
-//     return userInfo;
-//   }
+  getUserInfo() {
+    const userInfo = {
+      name: this._userName.textContent,
+      about: this._userAbout.textContent,
+      avatar: this._userAvatar.src
+    }
+    return userInfo;
+  }
 
-//   setUserInfo(data) {
-//     this._nameUser.textContent = data.name;
-//     this._jobUser.textContent = data.about;
-//     this._urlAvatarUser.src = data.avatar;
-//   }
-//  }
+  setUserInfo(data) {
+    this._userName = data.name;
+    this._userAbout = data.about;
+    this._userAvatar = data.avatar;
+  }
+ }
 
 
 // import { api } from './api.js'
@@ -58,10 +69,7 @@ export default class UserInfo {
 //     return api.getUser()
 //       .then(res => {
 //         console.log (res)
-//         console.log (this.user)
-
-//         this.user = res;
-//         return this.user
+//         return res
 //       })
 //       .catch(err => {
 //         console.log(err)
@@ -72,7 +80,7 @@ export default class UserInfo {
 //     api.updateUser(user.name, user.about)
 //       .then(res => {
 //         this._nameUser.textContent = res.name;
-//         his._infoUser.textContent = res.about;
+//         this._infoUser.textContent = res.about;
 //       })
 //       .catch(err => {
 //         console.log(err)
