@@ -95,7 +95,7 @@ profileAvatarImage.addEventListener('click', openProfileAvatarImage);
 
 // Добавить карточку:
 const AddCardForm = new PopupWithForm(cardPopup, {
-  formSubmit: (formData, buttonSave) => {
+  formSubmit: () => {
     cardsButtonSave.textContent = 'Сохранение...';
     api.setCard(popupCardsName.value, popupCardsImage.value)
       .then(results => {
@@ -123,7 +123,7 @@ const AddCardForm = new PopupWithForm(cardPopup, {
 
 // Редактирование аватарки:
 const editingAvatarForm = new PopupWithForm(avatarPopup, {
-  formSubmit: (formData, buttonSave) => {
+  formSubmit: () => {
     avatarButtonSave.textContent = 'Сохранение...';
     api.updateAvatar(popupAvatarImage.value)
     .then(data => {
@@ -140,7 +140,7 @@ const editingAvatarForm = new PopupWithForm(avatarPopup, {
 
 // Редактирование профиля:
 const editingProfileForm = new PopupWithForm(profilePopup, {
-  formSubmit: (formData, buttonSave) => {
+  formSubmit: () => {
     profileButtonSave.textContent = 'Сохранение...';
     api.updateUser(popupProfileName.value, popupProfileDescription.value)
     .then((data) => {
