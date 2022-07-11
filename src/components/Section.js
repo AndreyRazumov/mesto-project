@@ -1,21 +1,21 @@
 export default class Section {
-  constructor({ items, renderer }, container) {
-    this._items = items;
+  constructor({ renderer }, container) {
     this._renderer = renderer;
     this._container = container;
   }
 
+  // Принимает DOM-элемент и добавляет его в контейнер
   addItem(element) {
     this._container.append(element);
   }
 
-  // addItem(item) {
+  // setItem(item) {
   //   this._renderer(item);
   // }
 
-  renderItems() {
-    // this._clear();
-    this._items.forEach((item) => {
+  //Отрисовка всех элементов
+  renderItems(data) {
+    data.forEach((item) => {
       this._renderer(item);
     });
   }

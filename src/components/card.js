@@ -1,7 +1,5 @@
 import  {
   imagePopup,
-  popupImage,
-  popupFigcaption
 } from './vars.js';
 import PopupWithImage from './PopupWithImage.js';
 
@@ -16,11 +14,9 @@ export default class Card {
     this._cardLikes = data.likes;
     this._userId = userId;
     this._templateSelector = templateSelector;
-    // this._cardElement = this._element.querySelector('.element');
-    // this._button = cardElement.querySelector('.element__button-like');
-    // this._cardLikes.classList.add('element__button-like_active')
   }
-  //Клонируем карточки
+
+  // Клонирование карточек
   _getElement() {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -29,93 +25,73 @@ export default class Card {
      return cardElement;
   }
 
-  // Фцнкция добавления лайков:
+  // Добавление лайков:
   _addReactionListener () {
-    const cardElement = this._element.closest('.element');
-    console.log(cardElement)
-    const elementButtonLikeNum = cardElement.querySelector('.element__button-like-num');
-    const button = cardElement.querySelector('.element__button-like');
-    if (!button.classList.contains('element__button-like_active')) {
-      this._api.addLikes(cardElement.id)
+    if (!this._elementButtonLike.classList.contains('element__button-like_active')) {
+      this._api.addLikes(this._cardId)
         .then((res) => {
-          elementButtonLikeNum.textContent = res.likes.length;
-          button.classList.add('element__button-like_active');
+          this._elementButtonLikeNum.textContent = res.likes.length;
+          this._elementButtonLike.classList.add('element__button-like_active');
         })
         .catch(err => console.log(err));
     } else {
-      this._api.removeLikes(cardElement.id)
+      this._api.removeLikes(this._cardId)
         .then((res) => {
-          elementButtonLikeNum.textContent = res.likes.length;
-          button.classList.remove('element__button-like_active');
+          this._elementButtonLikeNum.textContent = res.likes.length;
+          this._elementButtonLike.classList.remove('element__button-like_active');
         })
         .catch(err => console.log(err));
     }
   };
 
-  // Функция удаления карточки
-  _deleteCard() {
-    const cardElement = document.getElementById(`${this._cardId}`);
-    console.log(this._cardId)
-    this._api.deleteCard(this._cardId)
-      .then(() => {
-        cardElement.remove();
-      })
-      .catch(err => console.log(err))
-
-
-      // function formHandlerDelete (cardItemId) {
-      //   const cardElement = document.getElementById(`${cardItemId}`);
-
-      //   api.deleteCard(cardItemId)
-      //     .then(() => {
-      //       cardElement.remove();
-      //     })
-      //     .catch(err => console.log(err))
-      // }
-
-      // function deleteCards (evt) {
-      //   const deleteButton = evt.target;
-      //   const cardElement = deleteButton.closest('.element');
-      //   formHandlerDelete(cardElement.id);
-      // };
-
-  }
-
+  // Увеличение картинки
   _handleCardClick() {
     const cardPopup = new PopupWithImage(imagePopup, this._link, this._name);
     cardPopup.open();
   }
+
+  //Установка моих лайков
   _refreshLikes() {
     if (Boolean(this._card.likes.find(like => like._id === this._userId))) {
     this._elementButtonLike.classList.add('element__button-like_active');
     }
   }
 
+  // Установка корзины на моих карточках
   _addDeleteButton() {
     if (this._ownerId === this._userId) {
-      this._element.addEventListener('click', this._deleteCard);
+      this._elementButtonTrash.classList.remove('element__button-trash_inactive');
     }else {
-      this._element.classList.add('element__button-trash_inactive');
+      this._elementButtonTrash.classList.add('element__button-trash_inactive');
     }
   }
 
-  //Навесим слушатели на кнопки
+  // Удаление карточки
+  _deleteCard() {
+    console.log(this._cardId)
+    this._api.deleteCard(this._cardId)
+      .then(() => {
+        this._element.remove();
+      })
+      .catch(err => console.log(err))
+  }
+
+  // Слушатели
   _setEventListeners() {
-    //лайки
-    this._element.querySelector('.element__button-like').addEventListener ('click', () => {
-    this._addReactionListener();
+    this._elementImage.addEventListener ('click', () => {
+    this._handleCardClick();
     })
-    //удаление
-    this._element.querySelector('.element__button-trash').addEventListener ('click', () => {
+
+    this._elementButtonTrash.addEventListener ('click', () => {
     this._deleteCard();
     })
-    //попап картинки
-    this._element.querySelector('.element__image').addEventListener ('click', () => {
-    this._handleCardClick();
+
+    this._elementButtonLike.addEventListener ('click', () => {
+    this._addReactionListener();
     })
   }
 
-  //Публичный метод генерации карточки
+  // Ввозвращает полностью работоспособный и наполненный данными элемент карточки
   generate() {
     this._element = this._getElement();
     this._cardElement = this._element
@@ -124,44 +100,14 @@ export default class Card {
     this._elementButtonTrash = this._element.querySelector('.element__button-trash')
     this._elementButtonLike = this._element.querySelector('.element__button-like');
     this._elementButtonLikeNum = this._element.querySelector('.element__button-like-num');
-
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
     this._elementButtonLikeNum.textContent = this._cardLikes.length;
     this._elementCaption.textContent = this._name;
     this._element.id = this._ownerId;
     this._setEventListeners();
-    // this._addDeleteButton();
+    this._addDeleteButton();
     this._refreshLikes()
-    // console.log(this._name)
-    // console.log(this._element);
-    // console.log(this._cardElement.id);
-    // console.log(this._cardLikes.length);
-
-
     return this._element;
-
-    // this._image = this._element.querySelector('.element__image'); //Картинка
-    // this._title = this._element.querySelector('.element__caption'); //Заголовок
-    // this._buttonLike = this._element.querySelector('.element__button-like'); //Кнопка лайка
-    // this._likeCount = this._element.querySelector('.element__button-like-num'); //Кол-во лайков
-    // this._deleteBtn = this._element.querySelector('.element__button-trash'); // Корзина
-
-    // this._image.src = this._link;
-    // this._title.textContent = this._name;
-    // this._image.alt = this._name;
-    // this._likeCount.textContent = this._cardLikes.length;
-
-    // Проверяем лайки и отмечаем свои лайки активными(и после перезагрузки страницы)!!!!
-    //   if (this._cardLikes.some((like) => like._id === this._userId)) {
-    //     this._buttonLike.classList.add('element__button-like_active')
-    //   }
-
-    // //Добавляем кнопку удалить на карточку
-    // if (this._ownerId === this._userId ) {
-    //   this._deleteBtn.style.display = 'block';
-    // }
-
-    //   return this._element;
   };
  }
