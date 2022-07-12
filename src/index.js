@@ -1,5 +1,5 @@
 
-// import './pages/index.css';
+import './pages/index.css';
 import  {
   avatarButtonSave,
   profileButtonSave,
@@ -43,6 +43,18 @@ const userInfo = new UserInfo(profileName, profileDesc, profileAvatarImage);
 // Загрузка данных с сервера
 const initialPromises = [api.getUser(), api.getCards()];
 
+const cardsSection = new Section ({
+  renderer: (data, userId) => {
+    const classCard = new Card ({
+      api,
+      data,
+      userId,
+      templateSelector: '#template'});
+    const cardElement = classCard.generate();
+    cardsSection.addItem(cardElement);
+  }
+}, cardsContainer)
+
 Promise.all(initialPromises)
   .then(results => {
     profileName.textContent = results[0].name;
@@ -51,22 +63,22 @@ Promise.all(initialPromises)
     const user = results[0];
     const userId = results[0]._id
     const cards = results[1];
-    const getCardsList = new Section ({
-      renderer: (data) => {
-        const classCard = new Card ({
-          api,
-          data,
-          userId,
-          templateSelector: '#template'});
-          const cardElement = classCard.generate();
-          getCardsList.addItem(cardElement);
-      }
-  }, cardsContainer)
+    console.log(cards);
+  //   const getCardsList = new Section ({
+  //     renderer: (data) => {
+  //       const classCard = new Card ({
+  //         api,
+  //         data,
+  //         userId,
+  //         templateSelector: '#template'});
+  //         const cardElement = classCard.generate();
+  //         getCardsList.addItem(cardElement);
+  //     }
+  // }, cardsContainer)
     userInfo.getUserInfo(user);
-    getCardsList.renderItems(cards);
+    cardsSection.renderItems(cards, userId);
   })
   .catch(err => console.log(err));
-
 
 // Открытие popup:
 function openProfileButtonEdit () {
@@ -98,19 +110,28 @@ const AddCardForm = new PopupWithForm(cardPopup, {
   formSubmit: () => {
     cardsButtonSave.textContent = 'Сохранение...';
     api.setCard(popupCardsName.value, popupCardsImage.value)
-      .then(results => {
-        const userId = results.owner._id;
-        const setCardsList = new Section ({
-          renderer: (results) => {
-            const classCard = new Card ({
-              api,
-              data,
-              userId,
-              templateSelector: '#template'});
-              const cardElement = classCard.generate(results);
-              const addCard = setCardsList.addItem(cardElement);
-          }
-      }, cardsContainer)
+      .then((data) => {
+        console.log(data);
+        const userId = data.owner._id;
+        const classCard = new Card ({
+                  api,
+                  data,
+                  userId,
+                  templateSelector: '#template'});
+        const cardElement = classCard.generate(data);
+        cardsSection.addItem(cardElement, true);
+      //   const setCardsList = new Section ({
+      //     renderer: (results) => {
+      //       const classCard = new Card ({
+      //         api,
+      //         data,
+      //         userId,
+      //         templateSelector: '#template'});
+      //         const cardElement = classCard.generate(results);
+      //         // const addCard = setCardsList.addItem(cardElement);
+      //         setCardsList.addItem(cardElement);
+      //     }
+      // }, cardsContainer)
       })
       .catch(err => console.log(err))
       .finally(() => {

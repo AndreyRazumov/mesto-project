@@ -5,8 +5,11 @@ export default class Section {
   }
 
   // Принимает DOM-элемент и добавляет его в контейнер
-  addItem(element) {
-    this._container.append(element);
+  addItem(element, beginning=false) {
+    if(beginning)
+      this._container.prepend(element);
+    else
+      this._container.append(element);
   }
 
   // setItem(item) {
@@ -14,9 +17,9 @@ export default class Section {
   // }
 
   //Отрисовка всех элементов
-  renderItems(data) {
+  renderItems(data, userId) {
     data.forEach((item) => {
-      this._renderer(item);
+      this._renderer(item, userId);
     });
   }
 }
