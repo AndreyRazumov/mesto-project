@@ -1,5 +1,5 @@
 
-import './pages/index.css';
+// import './pages/index.css';
 import  {
   avatarButtonSave,
   profileButtonSave,
@@ -63,18 +63,6 @@ Promise.all(initialPromises)
     const user = results[0];
     const userId = results[0]._id
     const cards = results[1];
-    console.log(cards);
-  //   const getCardsList = new Section ({
-  //     renderer: (data) => {
-  //       const classCard = new Card ({
-  //         api,
-  //         data,
-  //         userId,
-  //         templateSelector: '#template'});
-  //         const cardElement = classCard.generate();
-  //         getCardsList.addItem(cardElement);
-  //     }
-  // }, cardsContainer)
     userInfo.getUserInfo(user);
     cardsSection.renderItems(cards, userId);
   })
@@ -107,9 +95,9 @@ profileAvatarImage.addEventListener('click', openProfileAvatarImage);
 
 // Добавить карточку:
 const AddCardForm = new PopupWithForm(cardPopup, {
-  formSubmit: () => {
+  handleSubmit: (data) => {
     cardsButtonSave.textContent = 'Сохранение...';
-    api.setCard(popupCardsName.value, popupCardsImage.value)
+    api.setCard(data)
       .then((data) => {
         console.log(data);
         const userId = data.owner._id;
@@ -120,23 +108,11 @@ const AddCardForm = new PopupWithForm(cardPopup, {
                   templateSelector: '#template'});
         const cardElement = classCard.generate(data);
         cardsSection.addItem(cardElement, true);
-      //   const setCardsList = new Section ({
-      //     renderer: (results) => {
-      //       const classCard = new Card ({
-      //         api,
-      //         data,
-      //         userId,
-      //         templateSelector: '#template'});
-      //         const cardElement = classCard.generate(results);
-      //         // const addCard = setCardsList.addItem(cardElement);
-      //         setCardsList.addItem(cardElement);
-      //     }
-      // }, cardsContainer)
+        AddCardForm.close();
       })
       .catch(err => console.log(err))
       .finally(() => {
         cardsButtonSave.textContent = 'Создать';
-        AddCardForm.close();
       })
   }
 })
@@ -144,7 +120,7 @@ const AddCardForm = new PopupWithForm(cardPopup, {
 
 // Редактирование аватарки:
 const editingAvatarForm = new PopupWithForm(avatarPopup, {
-  formSubmit: () => {
+  handleSubmit: (data) => {
     avatarButtonSave.textContent = 'Сохранение...';
     api.updateAvatar(popupAvatarImage.value)
     .then(data => {
@@ -161,7 +137,9 @@ const editingAvatarForm = new PopupWithForm(avatarPopup, {
 
 // Редактирование профиля:
 const editingProfileForm = new PopupWithForm(profilePopup, {
-  formSubmit: () => {
+  handleSubmit: (data) => {
+    console.log(popupProfileName.value)
+    console.log(data)
     profileButtonSave.textContent = 'Сохранение...';
     api.updateUser(popupProfileName.value, popupProfileDescription.value)
     .then((data) => {

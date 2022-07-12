@@ -34,13 +34,13 @@ class Api {
 
 
   // Редактирование профиля
-  updateUser(name, about) {
+  updateUser(data) {
     return fetch (`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify ({
-        name,
-        about
+        name: data.name,
+        about: data.about
       })
     })
     .then (this._checkResponse)
@@ -48,7 +48,7 @@ class Api {
 
 
   // Добавление новой карточки
-  setCard(name, link) {
+  setCard(data) {
     return fetch (`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -90,12 +90,12 @@ class Api {
 
 
   // Обновление аватара пользователя
-  updateAvatar(avatar) {
+  updateAvatar(data) {
     return fetch (`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify ({
-        avatar
+        avatar: data.avatar
       })
     })
     .then (this._checkResponse)

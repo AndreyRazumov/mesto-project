@@ -12,10 +12,6 @@ export default class Section {
       this._container.append(element);
   }
 
-  // setItem(item) {
-  //   this._renderer(item);
-  // }
-
   //Отрисовка всех элементов
   renderItems(data, userId) {
     data.forEach((item) => {

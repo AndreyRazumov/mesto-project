@@ -1,9 +1,10 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor (popupSelector, handleSubmit) {
+  constructor (popupSelector, {handleSubmit}) {
     super(popupSelector);
     this._handleSubmit = handleSubmit;
+    this._formElement = this._popupSelector.querySelector('.popup__block');
   }
 
   // Собирает данные всех полей формы
@@ -13,18 +14,26 @@ export default class PopupWithForm extends Popup {
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
     })
+    console.log(this._formValues)
     return this._formValues
   }
 
+  _functionEventListener(evt) {
+    evt.preventDefault();
+    const formData = this._getInputValues();
+    this._handleSubmit(this._getInputValues());
+    this.close();
+  }
+
+
   // Добавляет слушатель клика
   setEventListeners() {
-    this._formElement = this._popupSelector.querySelector('.popup__block');
-    const buttonSave = this._popupSelector.querySelector('.popup__button-save');
     super.setEventListeners();
-    this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      const formData = this._getInputValues();
-      this._handleSubmit.formSubmit(formData, buttonSave);
+    // this._formElement.addEventListener('submit', this._functionEventListener)
+    this._formElement.addEventListener('submit', evt =>{
+    evt.preventDefault();
+    // const data = this._getInputValues();
+    this._handleSubmit(this._getInputValues());
     })
   }
 
@@ -32,5 +41,6 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._formElement.reset();
+    // this._formElement.removeEventListener('submit', this._functionEventListener)
   }
 }
