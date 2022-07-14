@@ -22,5 +22,10 @@ export default class UserInfo {
     this._userName.textContent = data.name;
     this._userAbout.textContent = data.about;
     this._userAvatar.src = data.avatar;
+    console.log(data)
+  }
+
+  setUserAvatar(user) {
+    this._userAvatar.src = user.avatar;
   }
 }

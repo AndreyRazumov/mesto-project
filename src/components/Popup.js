@@ -15,7 +15,7 @@ export default class Popup {
   close() {
     this._popupSelector.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
-    // document.removeEventListener('mousedown', this._handleOverlayClose);
+    this._popupSelector.removeEventListener('mousedown', this._handleOverlayClose);
   }
 
    //Pакрытие по Esc
@@ -33,7 +33,7 @@ export default class Popup {
 
    //Слушатели событий
   setEventListeners() {
-    document.addEventListener('mousedown', this._handleOverlayClose);
+    this._popupSelector.addEventListener('mousedown', this._handleOverlayClose);
     document.addEventListener('keydown', this._handleEscClose);
   }
 }

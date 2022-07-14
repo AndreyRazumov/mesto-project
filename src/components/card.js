@@ -18,11 +18,11 @@ export default class Card {
 
   // Клонирование карточек
   _getElement() {
-    const cardElement = document
+    this._cardElement = document
       .querySelector(this._templateSelector)
       .content.querySelector('.element')
       .cloneNode(true);
-     return cardElement;
+     return this._cardElement;
   }
 
   // Добавление лайков:
@@ -68,7 +68,6 @@ export default class Card {
 
   // Удаление карточки
   _deleteCard() {
-    console.log(this._cardId)
     this._api.deleteCard(this._cardId)
       .then(() => {
         this._element.remove();

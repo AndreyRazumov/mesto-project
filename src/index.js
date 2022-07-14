@@ -8,11 +8,8 @@ import  {
   cardPopup,
   cardsButtonSave,
   avatarPopup,
-  popupCardsName,
-  popupCardsImage,
   popupProfileName,
   popupProfileDescription,
-  popupAvatarImage,
   profileName,
   profileDesc,
   profileButtonEdit,
@@ -75,31 +72,29 @@ function openProfileButtonEdit () {
   profileFormValid.validButtonSave(profileButtonSave);
   editingProfileForm.open();
 }
+profileButtonEdit.addEventListener('click', openProfileButtonEdit);
 
 function openAddCardForm () {
   formCardsAdd.reset();
   cardFormValid.validButtonSave(cardsButtonSave);
   AddCardForm.open();
 }
+profileButtonLink.addEventListener('click', openAddCardForm);
 
 function openProfileAvatarImage () {
   formAvatarAdd.reset();
   avatarFormValid.validButtonSave(avatarButtonSave);
   editingAvatarForm.open();
 }
-
-profileButtonEdit.addEventListener('click', openProfileButtonEdit);
-profileButtonLink.addEventListener('click', openAddCardForm);
 profileAvatarImage.addEventListener('click', openProfileAvatarImage);
 
 
 // Добавить карточку:
 const AddCardForm = new PopupWithForm(cardPopup, {
-  handleSubmit: (data) => {
+  handleSubmit: (formData) => {
     cardsButtonSave.textContent = 'Сохранение...';
-    api.setCard(data)
+    api.setCard(formData.popupCardsName, formData.popupCardsImage)
       .then((data) => {
-        console.log(data);
         const userId = data.owner._id;
         const classCard = new Card ({
                   api,
@@ -120,9 +115,9 @@ const AddCardForm = new PopupWithForm(cardPopup, {
 
 // Редактирование аватарки:
 const editingAvatarForm = new PopupWithForm(avatarPopup, {
-  handleSubmit: (data) => {
+  handleSubmit: (formData) => {
     avatarButtonSave.textContent = 'Сохранение...';
-    api.updateAvatar(popupAvatarImage.value)
+    api.updateAvatar(formData.avatar)
     .then(data => {
       userInfo.setUserInfo(data);
     })
@@ -137,11 +132,9 @@ const editingAvatarForm = new PopupWithForm(avatarPopup, {
 
 // Редактирование профиля:
 const editingProfileForm = new PopupWithForm(profilePopup, {
-  handleSubmit: (data) => {
-    console.log(popupProfileName.value)
-    console.log(data)
+  handleSubmit: (formData) => {
     profileButtonSave.textContent = 'Сохранение...';
-    api.updateUser(popupProfileName.value, popupProfileDescription.value)
+    api.updateUser(formData.name, formData.about)
     .then((data) => {
     userInfo.setUserInfo(data);
     })

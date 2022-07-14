@@ -1,10 +1,11 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor (popupSelector, {handleSubmit}) {
+  constructor (popupSelector, handle) {
     super(popupSelector);
-    this._handleSubmit = handleSubmit;
+    this._handle = handle;
     this._formElement = this._popupSelector.querySelector('.popup__block');
+    this._functionEventListener = this._functionEventListener.bind(this);
   }
 
   // Собирает данные всех полей формы
@@ -14,14 +15,12 @@ export default class PopupWithForm extends Popup {
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
     })
-    console.log(this._formValues)
     return this._formValues
   }
 
   _functionEventListener(evt) {
     evt.preventDefault();
-    const formData = this._getInputValues();
-    this._handleSubmit(this._getInputValues());
+    this._handle.handleSubmit(this._getInputValues());
     this.close();
   }
 
@@ -29,18 +28,13 @@ export default class PopupWithForm extends Popup {
   // Добавляет слушатель клика
   setEventListeners() {
     super.setEventListeners();
-    // this._formElement.addEventListener('submit', this._functionEventListener)
-    this._formElement.addEventListener('submit', evt =>{
-    evt.preventDefault();
-    // const data = this._getInputValues();
-    this._handleSubmit(this._getInputValues());
-    })
+    this._formElement.addEventListener('submit', this._functionEventListener)
   }
 
   // Ззакрытие попапа
   close() {
-    super.close();
     this._formElement.reset();
-    // this._formElement.removeEventListener('submit', this._functionEventListener)
+    super.close();
+    this._formElement.removeEventListener('submit', this._functionEventListener)
   }
 }
